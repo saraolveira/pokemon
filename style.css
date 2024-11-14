@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 1rem;
+}
+
+#buscador {
+    width: 80vw;
+    padding: 0.2rem 1rem;
+}
