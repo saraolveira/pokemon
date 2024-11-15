@@ -24,7 +24,9 @@ Proyecto del Grupo B para el bootcamp de Hack A Boss
 
 ### JavaScript
 - [x]  Función fetch inicial y reusable
-- [ ]  Obtener la info de todos los pokemons
+- [x]  Obtener la info de todos los pokemons
+- [x]  Obtener cuando hay match de varios pokemons
+- [x]  Obtener cuando hay match de un solo pokemon
 - [ ]  Mostrar los pokemons que empiezan a coincidir con la busqueda
 - [ ]  Mostrar la carta de un pokemon cuando es coincidencia exacta
     - [ ]  Llamada a fetch con la url api del pokemon

@@ -1,7 +1,10 @@
 const search = document.querySelector("#search")
 let searchValue = null
 
+const sugerenciasPokemons = document.querySelector("#pokemons")
+
 let singlePokemon = null
+let pokemonMatches = null
 
 const getPokemons = async (url) => {
     const response = await fetch(url)
@@ -9,23 +12,45 @@ const getPokemons = async (url) => {
     return response.json()
 }
 
-const matchPokemons = async () => {
+const searchPokemons = async () => {
     const data = await getPokemons(
         "https://pokeapi.co/api/v2/pokemon?limit=1126"
     )
     const pokemons = data.results
-    console.log(pokemons)
 
     search.addEventListener("input", () => {
         searchValue = search.value.toLowerCase()
 
-        const fullMatch = pokemons.filter(
-            (pokemon) => pokemon.name === searchValue
+        pokemonMatches = pokemons.filter((pokemon) => {
+            const nameGuion = pokemon.name
+            const name = nameGuion.replaceAll("-", " ")
+            return name.includes(searchValue)
+        })
+
+        singlePokemon = pokemons.filter(
+            (pokemon) => pokemon.name.replaceAll("-", " ") === searchValue
         )
-        if (fullMatch[0]) {
-            singlePokemon = fullMatch[0]
+
+        if (singlePokemon[0]) {
+            showPokemon()
+        } else if (pokemonMatches.length > 1) {
+            showPokemons()
         }
-    })
+
+    }) 
 }
 
-matchPokemons()
+const showPokemon = () => {
+    console.log(singlePokemon)
+    // Aqui hay que añadir para que pinte en el html la carta de un pokemon
+}
+
+const showPokemons = () => {
+    console.log(pokemonMatches)
+    const pokemonsHTML = pokemonMatches.map((pokemon) => `<li>${pokemon.name}</li>`).join('')
+    sugerenciasPokemons.innerHTML = pokemonsHTML
+
+}
+
+searchPokemons()
+
