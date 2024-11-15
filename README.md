@@ -7,7 +7,7 @@ Proyecto del Grupo B para el bootcamp de Hack A Boss
 ## Lista de tareas
 ### HTML
 - [x]  Layout general de la página
-- [ ]  Layout de la página cuando se está buscando un Pokemon y hay varias coincidencias
+- [x]  Layout de la página cuando se está buscando un Pokemon y hay varias coincidencias
 - [ ]  Layout de la página cuando se está buscando un Pokemon y coincide exacto con un Pokemon
 - [ ]  Layout de la página cuando no hay coincidencias
 
