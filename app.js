@@ -3,14 +3,16 @@ let searchValue = null
 
 let singlePokemon = null
 
-const getPokemons = async () => {
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1126")
+const getPokemons = async (url) => {
+    const response = await fetch(url)
 
     return response.json()
 }
 
 const matchPokemons = async () => {
-    const data = await getPokemons()
+    const data = await getPokemons(
+        "https://pokeapi.co/api/v2/pokemon?limit=1126"
+    )
     const pokemons = data.results
     console.log(pokemons)
 
