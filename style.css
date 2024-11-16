@@ -6,6 +6,10 @@
 
 body {
     padding: 1rem;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #search {
@@ -13,8 +17,41 @@ body {
     padding: 0.2rem 1rem;
 }
 
+#searchButton {
+    width: 3rem;
+    height: 1.5rem;
+    bottom: hover;
+}
+
+#card {
+    display: none;
+    width: 320px;
+    height: 450px;
+    border: 0.75rem solid #000;
+    border-radius: 1rem;
+    background: linear-gradient(to bottom, #ffffcc, #ffcc00);
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    padding: 15px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
 .pokemon-name {
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 10px;
     text-transform: capitalize;
+}
+
+#card .pokemon-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 3px;
+    text-transform: upp;
+    border-radius: 1rem;
+    background-color: rgb(255, 255, 44);
 }
 
 .pokemon-stats {
