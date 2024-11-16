@@ -8,9 +8,17 @@ body {
     padding: 1rem;
 }
 
-#buscador {
+#search {
     width: 80vw;
     padding: 0.2rem 1rem;
+}
+
+.pokemon-name {
+    text-transform: capitalize;
+}
+
+.pokemon-stats {
+    text-transform: uppercase;
 }
 
 #resultados {
@@ -19,7 +27,7 @@ body {
 }
 
 .resultados-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit,minmax(150px,1fr)) ;
-gap: 20px
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
 }
