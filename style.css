@@ -4,17 +4,51 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Pokemon';
+    src: url("/fonts/pokemon.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+
 body {
-    padding: 1rem;
     font-family: Arial, sans-serif;
+    background-color: #dc0a2d;
+}
+
+header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: black;
+    width: 100vw;
+    padding-bottom: 1.5rem;
+}
+
+h1 {
+    color: #FAC100;
+    font-size: 1.5rem;
+    font-family: "Pokemon";
+    letter-spacing: 4px;
+}
+
+#search-container {
+    display: flex;
+    gap: 0.1rem;
+    background-color: #ffffff;
+    border-radius: 3rem;
+    padding: 0.5rem;
+}
+
+#search-container img {
+    width: 10vw;
 }
 
 #search {
-    width: 80vw;
-    padding: 0.2rem 1rem;
+    width: 70vw;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 3rem;
 }
 
 #searchButton {
@@ -22,6 +56,15 @@ body {
     height: 1.5rem;
     bottom: hover;
 }
+
+main {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+}
+
+
 
 #card {
     display: none;
@@ -31,9 +74,9 @@ body {
     border-radius: 1rem;
     background: linear-gradient(to bottom, #ffffcc, #ffcc00);
     font-family: 'Arial', sans-serif;
+    font-family: "";
     box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
     padding: 15px;
-    margin-top: 20px;
     text-align: center;
 }
 
