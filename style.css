@@ -27,9 +27,14 @@ header {
 
 h1 {
     color: #fac100;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-family: "Pokemon";
     letter-spacing: 4px;
+}
+
+#pokemon-finder {
+    width: 12%;
+    height: 12%;
 }
 
 #search-container {
@@ -70,9 +75,14 @@ ul {
 
 main {
     width: 100vw;
+    height: 66vh;
     display: flex;
     justify-content: center;
     margin-top: 5vh;
+    background-image: url(./img/pokedex.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50% 100%;
 }
 
 #card {
@@ -167,5 +177,11 @@ main {
 @media (min-width: 768px) {
     #search-container img {
         width: 4vw;
+    }
+
+    #card {
+        position: relative;
+        top: 3.9rem;
+        left: 4rem;
     }
 }
