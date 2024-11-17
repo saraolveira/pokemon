@@ -1,5 +1,6 @@
 const search = document.querySelector("#search")
 let searchValue = null
+let back = false;
 
 const sugerenciasPokemons = document.querySelector("#pokemons")
 const pokemonCard = document.querySelector("#card")
@@ -78,6 +79,7 @@ const showPokemon = async () => {
                .join("")}
            </div>
     </div>`
+    back = false;
 }
 
 const showPokemons = () => {
@@ -110,6 +112,16 @@ sugerenciasPokemons.addEventListener("click", (event) => {
         );
         showPokemon();
     }
+});
+
+
+pokemonCard.addEventListener("click", (event)=>{
+    pokemonCard.innerHTML = '<p>hola</p>'
+    
+    if (back){
+        showPokemon();
+    }
+    back = true;
 });
 
 // Evento para funcionamiento del modo oscuro
