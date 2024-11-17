@@ -76,19 +76,22 @@ ul {
 main {
     width: 100vw;
     height: 66vh;
+    min-width: 800px;
+    min-height: 640px;
     display: flex;
     justify-content: center;
     margin-top: 5vh;
-    background-image: url(./img/pokedex.jpeg);
+    background-image: url(./img/pokedex_v2.png);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 50% 100%;
+    background-size: contain;
 }
 
 #card {
     display: none;
-    width: 320px;
-    height: 450px;
+    width: 21vw;
+    overflow: hidden;
+    height: 6vh;
     border: 0.75rem solid #000;
     border-radius: 1rem;
     background: linear-gradient(to bottom, #ffffcc, #ffcc00);
@@ -97,6 +100,11 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
     padding: 15px;
     text-align: center;
+    position: relative;
+    top: 11%;
+    left: 2%;
+    min-width: 388px;
+    min-height: 480px;
 }
 
 .pokemon-name {
@@ -162,11 +170,6 @@ main {
     gap: 5px;
 }
 
-#card {
-    width: 300px;
-    overflow: hidden;
-}
-
 .pokemon-imgs img {
     max-width: 75px;
     height: auto;
@@ -221,11 +224,5 @@ section.boton {
 @media (min-width: 768px) {
     #search-container img {
         width: 4vw;
-    }
-
-    #card {
-        position: relative;
-        top: 3.9rem;
-        left: 4rem;
-    }
+    }    
 }
