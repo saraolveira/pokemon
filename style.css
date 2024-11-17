@@ -44,6 +44,17 @@ h1 {
     width: 10vw;
 }
 
+/* Cambiar el color de las sugerencias */
+
+ul {
+    color: black;
+    background-color: white;
+    width: 50%;
+    padding: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+}
+
 #search {
     width: 70vw;
     padding: 0.5rem 1rem;
@@ -110,4 +121,54 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
+}
+
+/* Para modificar los datos de las tarjetas Pokemon */
+
+#pokemons li {
+    cursor: pointer;
+}
+
+.pokemon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
+.pokemon-data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.pokemon-imgs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon-data .pokemon-stats .pokemon-types {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+#card {
+    width: 300px;
+    overflow: hidden;
+}
+
+.pokemon-imgs img {
+    max-width: 75px;
+    height: auto;
+}
+
+/* Media query para tamaño de pantalla */
+
+@media (min-width: 768px) {
+    #search-container img {
+        width: 4vw;
+    }
 }

@@ -56,25 +56,20 @@ const showPokemon = async () => {
             pokemonData.sprites.other.dream_world.front_default
         }" alt="${pokemonData.name} frontal"/>
          <img src="${pokemonData.sprites.back_default}" alt="${
-        pokemonData.name
-    } posterior"/>
+        pokemonData.name} posterior"/>
          <div class="pokemon-data">
-<p class="altura">Height: ${pokemonData.height} </p>
-<p class="altura">Weight: ${pokemonData.weight} </p>
+            <p class="altura">Height: ${pokemonData.height} </p>
+            <p class="altura">Weight: ${pokemonData.weight} </p>
          </div>
         <div class="pokemon-stats">
-<p class="health">${pokemonData.stats[0].stat.name}: ${
-        pokemonData.stats[0].base_stat
-    } </p>
-<p class="attack">${pokemonData.stats[1].stat.name}: ${
-        pokemonData.stats[1].base_stat
-    } </p>
-<p class="defense">${pokemonData.stats[2].stat.name}: ${
-        pokemonData.stats[2].base_stat
-    } </p>
-<p class="speed">${pokemonData.stats[5].stat.name}: ${
-        pokemonData.stats[5].base_stat
-    } </p>
+            <p class="health">${pokemonData.stats[0].stat.name}: ${
+            pokemonData.stats[0].base_stat} </p>
+            <p class="attack">${pokemonData.stats[1].stat.name}: ${
+            pokemonData.stats[1].base_stat} </p>
+            <p class="defense">${pokemonData.stats[2].stat.name}: ${
+            pokemonData.stats[2].base_stat} </p>
+            <p class="speed">${pokemonData.stats[5].stat.name}: ${
+            pokemonData.stats[5].base_stat} </p>
          </div>
            <div class="pokemon-types">
            <h3>Types</h3>
@@ -82,9 +77,7 @@ const showPokemon = async () => {
                .map((type) => `<p>${type.type.name}</p>`)
                .join("")}
            </div>
-    </div>
-    
-    `
+    </div>`
 }
 
 const showPokemons = () => {
@@ -106,3 +99,15 @@ const showPokemons = () => {
 }
 
 searchPokemons()
+
+// EventListener para los clicks en las sugerencias
+sugerenciasPokemons.addEventListener("click", (event) => {
+    if (event.target.tagName === "LI") {
+        search.value = event.target.textContent;
+        searchValue = search.value.toLowerCase(); // Actualizar searchValue
+        singlePokemon = pokemonMatches.filter(
+            (pokemon) => pokemon.name.replaceAll("-", " ") === searchValue
+        );
+        showPokemon();
+    }
+});
