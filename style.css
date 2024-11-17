@@ -172,6 +172,50 @@ main {
     height: auto;
 }
 
+/* Estilos para el modo oscuro */
+body.modo-oscuro {
+    background-color: #121212;
+    color: #ffffff;
+}
+header.modo-oscuro {
+    background-color: #a50808de;
+}
+#search-container.modo-oscuro {
+    background-color: #ffffff;
+}
+
+#search.modo-oscuro {
+    background-color: #464641;
+    color: #ffffff;
+}
+#card.modo-oscuro {
+    background: linear-gradient( to bottom, #333334, #555555);
+    border-color: #666666;
+    color: #ffffff;
+}
+.pokemon-name.modo-oscuro {
+    background-color: #464640;
+
+}
+.resultados-grid.modo-oscuro {
+    background-color: #1e1e1e;
+}
+
+/* Estilo del boton  */
+section.boton {
+    background-color: #FAC100;
+    color: #050404;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+
+}
+
 /* Media query para tamaño de pantalla */
 
 @media (min-width: 768px) {

@@ -111,3 +111,13 @@ sugerenciasPokemons.addEventListener("click", (event) => {
         showPokemon();
     }
 });
+
+// Evento para funcionamiento del modo oscuro
+
+document.querySelector('#modonoche .boton').addEventListener('click' , () => {
+    document.body.classList.toggle('modo-oscuro');
+    document.querySelector('header') .classList.toggle('modo-oscuro');
+    document.getElementById('search-container').classList.toggle('modo-oscuro');
+    document.getElementById('card').classList.toggle('modo-oscuro');
+    document.querySelector('.resultados-grid') .classList.toggle('modo-oscuro');
+} )
