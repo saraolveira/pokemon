@@ -250,9 +250,10 @@ document.querySelector("#modonoche .boton").addEventListener("click", () => {
     document.querySelector("header").classList.toggle("modo-oscuro")
     document.getElementById("search-container").classList.toggle("modo-oscuro")
     document.getElementById("card").classList.toggle("modo-oscuro")
-    document.querySelector(".resultados-grid").classList.toggle("modo-oscuro")
 })
 
-document.querySelector("#modonoche .boton").addEventListener("dbclick", () => {
-    document.body.classList.toggle("susto")
+document.querySelector("main").addEventListener("dblclick", () => {
+    console.log('da un susto')    
+    document.getElementById("susto").classList.toggle("susto")
+    // document.querySelector("body.susto").classList.toggle("susto")
 })
