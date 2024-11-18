@@ -1,3 +1,9 @@
+:root {
+    --red: #ff0000;
+    --blue: #384cca;
+    --yellow: #ffde00;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +19,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #dc0a2d;
+    background-color: var(--blue);
 }
 
 header {
@@ -26,7 +32,7 @@ header {
 }
 
 h1 {
-    color: #fac100;
+    color: var(--yellow);
     font-size: 1.75rem;
     font-family: "Pokemon";
     letter-spacing: 4px;
@@ -49,17 +55,6 @@ h1 {
     width: 10vw;
 }
 
-/* Cambiar el color de las sugerencias */
-
-ul {
-    color: black;
-    background-color: white;
-    width: 50%;
-    padding: 0.5rem;
-    text-align: center;
-    text-decoration: none;
-}
-
 #search {
     width: 70vw;
     padding: 0.5rem 1rem;
@@ -75,9 +70,6 @@ ul {
 
 main {
     width: 100vw;
-    height: 66vh;
-    min-width: 800px;
-    min-height: 640px;
     display: flex;
     justify-content: center;
     margin-top: 5vh;
@@ -87,6 +79,82 @@ main {
     background-size: contain;
 }
 
+#pokemons {
+    color: black;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--blue);
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 3rem;
+    list-style: none;
+}
+
+.poke-match {
+    cursor: pointer;
+    width: 10rem;
+    height: 10rem;
+    background-color: var(--red);
+    color: var(--yellow);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5rem solid #000;
+    background-image: linear-gradient(transparent 50%, #fff 50%);
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.poke-match:hover {
+    background-color: var(--yellow);
+    color: var(--blue);
+}
+
+.poke-match:hover::after {
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 0.5rem solid #000;
+    background-color: var(--blue);
+}
+
+.poke-match::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0.5rem;
+    background-color: #000;
+}
+
+.poke-match::after {
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 0.5rem solid #000;
+    transition: all 0.2s ease-in-out;
+}
+
+.poke-match p {
+    position: relative;
+    z-index: 2;
+    margin-top: -4rem;
+    font-weight: bold;
+    width: 80%;
+}
+
+.pokemon-name {
+    text-transform: capitalize;
+}
+
 #card {
     display: none;
     width: 21vw;
@@ -94,7 +162,7 @@ main {
     height: 6vh;
     border: 0.75rem solid #000;
     border-radius: 1rem;
-    background: linear-gradient(to bottom, #ffffcc, #ffcc00);
+    background: linear-gradient(to bottom, #ffffcc, var(--yellow));
     font-family: "Arial", sans-serif;
     font-family: "";
     box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
@@ -105,13 +173,6 @@ main {
     left: 2%;
     min-width: 388px;
     min-height: 480px;
-}
-
-.pokemon-name {
-    font-size: 15px;
-    font-weight: normal;
-    margin-top: 10px;
-    text-transform: capitalize;
 }
 
 #card .pokemon-name {
@@ -125,23 +186,6 @@ main {
 
 .pokemon-stats {
     text-transform: uppercase;
-}
-
-#resultados {
-    padding: 20px;
-    margin-top: 15px;
-}
-
-.resultados-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-}
-
-/* Para modificar los datos de las tarjetas Pokemon */
-
-#pokemons li {
-    cursor: pointer;
 }
 
 .pokemon-card {
@@ -181,7 +225,7 @@ body.modo-oscuro {
     color: #ffffff;
 }
 header.modo-oscuro {
-    background-color: #a50808de;
+    background-color: var(--red);
 }
 #search-container.modo-oscuro {
     background-color: #ffffff;
@@ -192,13 +236,12 @@ header.modo-oscuro {
     color: #ffffff;
 }
 #card.modo-oscuro {
-    background: linear-gradient( to bottom, #333334, #555555);
+    background: linear-gradient(to bottom, #333334, #555555);
     border-color: #666666;
     color: #ffffff;
 }
 .pokemon-name.modo-oscuro {
     background-color: #464640;
-
 }
 .resultados-grid.modo-oscuro {
     background-color: #1e1e1e;
@@ -206,7 +249,7 @@ header.modo-oscuro {
 
 /* Estilo del boton  */
 section.boton {
-    background-color: #FAC100;
+    background-color: var(--yellow);
     color: #050404;
     padding: 10px;
     border-radius: 25px;
@@ -216,7 +259,6 @@ section.boton {
     top: 10px;
     right: 10px;
     z-index: 1000;
-
 }
 
 /* Media query para tamaño de pantalla */
@@ -224,5 +266,9 @@ section.boton {
 @media (min-width: 768px) {
     #search-container img {
         width: 4vw;
-    }    
+    }
+
+    #pokemons {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

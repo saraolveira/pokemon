@@ -1,6 +1,6 @@
 const search = document.querySelector("#search")
 let searchValue = null
-let back = false;
+let back = false
 
 const sugerenciasPokemons = document.querySelector("#pokemons")
 const pokemonCard = document.querySelector("#card")
@@ -57,20 +57,25 @@ const showPokemon = async () => {
             pokemonData.sprites.other.dream_world.front_default
         }" alt="${pokemonData.name} frontal"/>
          <img src="${pokemonData.sprites.back_default}" alt="${
-        pokemonData.name} posterior"/>
+        pokemonData.name
+    } posterior"/>
          <div class="pokemon-data">
             <p class="altura">Height: ${pokemonData.height} </p>
             <p class="altura">Weight: ${pokemonData.weight} </p>
          </div>
         <div class="pokemon-stats">
             <p class="health">${pokemonData.stats[0].stat.name}: ${
-            pokemonData.stats[0].base_stat} </p>
+        pokemonData.stats[0].base_stat
+    } </p>
             <p class="attack">${pokemonData.stats[1].stat.name}: ${
-            pokemonData.stats[1].base_stat} </p>
+        pokemonData.stats[1].base_stat
+    } </p>
             <p class="defense">${pokemonData.stats[2].stat.name}: ${
-            pokemonData.stats[2].base_stat} </p>
+        pokemonData.stats[2].base_stat
+    } </p>
             <p class="speed">${pokemonData.stats[5].stat.name}: ${
-            pokemonData.stats[5].base_stat} </p>
+        pokemonData.stats[5].base_stat
+    } </p>
          </div>
            <div class="pokemon-types">
            <h3>Types</h3>
@@ -79,22 +84,22 @@ const showPokemon = async () => {
                .join("")}
            </div>
     </div>`
-    back = false;
+    back = false
 }
 
 const showPokemons = () => {
     // Visibilidad de los contenedores
-    sugerenciasPokemons.style.display = "block"
+    sugerenciasPokemons.style.display = "grid"
     pokemonCard.style.display = "none"
 
     // Mostrar los pokemons en el HTML
     const pokemonsHTML = pokemonMatches
         .map(
             (pokemon) =>
-                `<li class="pokemon-name">${pokemon.name.replaceAll(
+                `<li class="pokemon-name poke-match"><p>${pokemon.name.replaceAll(
                     "-",
                     " "
-                )}</li>`
+                )}</p></li>`
         )
         .join("")
     sugerenciasPokemons.innerHTML = pokemonsHTML
@@ -105,31 +110,30 @@ searchPokemons()
 // EventListener para los clicks en las sugerencias
 sugerenciasPokemons.addEventListener("click", (event) => {
     if (event.target.tagName === "LI") {
-        search.value = event.target.textContent;
-        searchValue = search.value.toLowerCase(); // Actualizar searchValue
+        search.value = event.target.textContent
+        searchValue = search.value.toLowerCase() // Actualizar searchValue
         singlePokemon = pokemonMatches.filter(
             (pokemon) => pokemon.name.replaceAll("-", " ") === searchValue
-        );
-        showPokemon();
+        )
+        showPokemon()
     }
-});
+})
 
+pokemonCard.addEventListener("click", (event) => {
+    pokemonCard.innerHTML = "<p>hola</p>"
 
-pokemonCard.addEventListener("click", (event)=>{
-    pokemonCard.innerHTML = '<p>hola</p>'
-    
-    if (back){
-        showPokemon();
+    if (back) {
+        showPokemon()
     }
-    back = true;
-});
+    back = true
+})
 
 // Evento para funcionamiento del modo oscuro
 
-document.querySelector('#modonoche .boton').addEventListener('click' , () => {
-    document.body.classList.toggle('modo-oscuro');
-    document.querySelector('header') .classList.toggle('modo-oscuro');
-    document.getElementById('search-container').classList.toggle('modo-oscuro');
-    document.getElementById('card').classList.toggle('modo-oscuro');
-    document.querySelector('.resultados-grid') .classList.toggle('modo-oscuro');
-} )
+document.querySelector("#modonoche .boton").addEventListener("click", () => {
+    document.body.classList.toggle("modo-oscuro")
+    document.querySelector("header").classList.toggle("modo-oscuro")
+    document.getElementById("search-container").classList.toggle("modo-oscuro")
+    document.getElementById("card").classList.toggle("modo-oscuro")
+    document.querySelector(".resultados-grid").classList.toggle("modo-oscuro")
+})
