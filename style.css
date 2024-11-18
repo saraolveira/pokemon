@@ -2,6 +2,7 @@
     --red: #ff0000;
     --blue: #384cca;
     --yellow: #ffde00;
+    --card-bg: url(./img/texturas/colorless.png);
 }
 
 * {
@@ -19,7 +20,6 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: var(--blue);
 }
 
 header {
@@ -76,15 +76,14 @@ main {
     min-height: 70vh;
     display: flex;
     justify-content: center;
-    margin-top: 5vh;
     padding: 1rem;
+    background-color: var(--blue);
 }
 
 #pokemons {
     color: black;
     text-align: center;
     text-decoration: none;
-    background-color: var(--blue);
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -155,7 +154,7 @@ main {
     text-transform: capitalize;
 }
 
-#pokedex {
+/* #pokedex {
     display: none;
     background-image: url(./img/pokedex_v2.png);
     background-repeat: no-repeat;
@@ -166,7 +165,7 @@ main {
     min-width: 800px;
     min-height: 640px;
     justify-content: center;
-}
+} */
 
 #card {
     display: none;
@@ -175,7 +174,11 @@ main {
     height: 6vh;
     border: 0.75rem solid #000;
     border-radius: 1rem;
-    background: linear-gradient(to bottom, #ffffcc, var(--yellow));
+    /* background: linear-gradient(to bottom, #ffffcc, var(--yellow)); */
+    background-image: url("./img/texturas/water.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     font-family: "Arial", sans-serif;
     font-family: "";
     box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
@@ -265,11 +268,17 @@ footer {
     text-align: center;
     background-color: white;
     color: #000;
+    padding-bottom: 1rem;
 }
 
 #logo {
     width: 3%;
-    height: 3%;
+    position: absolute;
+    right: 0; 
+}
+
+footer p {
+    padding: 1rem;
 }
 
 /* Estilo del boton  */

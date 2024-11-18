@@ -5,7 +5,6 @@ let back = false
 
 const sugerenciasPokemons = document.querySelector("#pokemons")
 const pokemonCard = document.querySelector("#card")
-const pokedex = document.querySelector("#pokedex")
 
 let singlePokemon = null
 let pokemonMatches = null
@@ -49,7 +48,6 @@ const showPokemon = async () => {
 
     // Visibilidad de los contenedores
     sugerenciasPokemons.style.display = "none"
-    pokedex.style.display = "flex"
     pokemonCard.style.display = "block"
 
     // Mostrar información del pokemon en el HTML
@@ -59,27 +57,18 @@ const showPokemon = async () => {
     <div class="pokemon-imgs">
         <img src="${
             pokemonData.sprites.other.dream_world.front_default
-        }" alt="${pokemonData.name} frontal"/>
-         <img src="${pokemonData.sprites.back_default}" alt="${
-        pokemonData.name
-    } posterior"/>
+            }" alt="${pokemonData.name} frontal"/>
+            <img src="${pokemonData.sprites.back_default}" alt="${pokemonData.name} posterior"/>
          <div class="pokemon-data">
             <p class="altura">Height: ${pokemonData.height} </p>
             <p class="altura">Weight: ${pokemonData.weight} </p>
          </div>
         <div class="pokemon-stats">
             <p class="health">${pokemonData.stats[0].stat.name}: ${
-        pokemonData.stats[0].base_stat
-    } </p>
-            <p class="attack">${pokemonData.stats[1].stat.name}: ${
-        pokemonData.stats[1].base_stat
-    } </p>
-            <p class="defense">${pokemonData.stats[2].stat.name}: ${
-        pokemonData.stats[2].base_stat
-    } </p>
-            <p class="speed">${pokemonData.stats[5].stat.name}: ${
-        pokemonData.stats[5].base_stat
-    } </p>
+            pokemonData.stats[0].base_stat} </p>
+            <p class="attack">${pokemonData.stats[1].stat.name}: ${pokemonData.stats[1].base_stat} </p>
+            <p class="defense">${pokemonData.stats[2].stat.name}: ${pokemonData.stats[2].base_stat} </p>
+            <p class="speed">${pokemonData.stats[5].stat.name}: ${pokemonData.stats[5].base_stat} </p>
          </div>
            <div class="pokemon-types">
            <h3>Types</h3>
@@ -94,7 +83,6 @@ const showPokemon = async () => {
 const showPokemons = () => {
     // Visibilidad de los contenedores
     sugerenciasPokemons.style.display = "grid"
-    pokedex.style.display = "none"
     pokemonCard.style.display = "none"
 
     // Mostrar los pokemons en el HTML
