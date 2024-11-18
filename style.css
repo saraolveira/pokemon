@@ -175,10 +175,10 @@ main {
     border: 0.75rem solid #000;
     border-radius: 1rem;
     /* background: linear-gradient(to bottom, #ffffcc, var(--yellow)); */
-    background-image: url("./img/texturas/water.png");
+    background-image: var(--card-bg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     font-family: "Arial", sans-serif;
     font-family: "";
     box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
@@ -252,7 +252,6 @@ header.modo-oscuro {
     color: #ffffff;
 }
 #card.modo-oscuro {
-    background: linear-gradient(to bottom, #333334, #555555);
     border-color: #666666;
     color: #ffffff;
 }
@@ -293,6 +292,7 @@ section.boton {
     top: 10px;
     right: 10px;
     z-index: 1000;
+    cursor: pointer;
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

@@ -78,6 +78,7 @@ const showPokemon = async () => {
            </div>
     </div>`
     back = false
+    console.log(pokemonData.types[0].type.name)
 }
 
 const showPokemons = () => {
