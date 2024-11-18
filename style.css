@@ -153,6 +153,7 @@ main {
 }
 
 #pokedex {
+    display: none;
     background-image: url(./img/pokedex_v2.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -161,7 +162,6 @@ main {
     height: 66vh;
     min-width: 800px;
     min-height: 640px;
-    display: flex;
     justify-content: center;
 }
 
