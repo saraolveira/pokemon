@@ -4,6 +4,7 @@ let back = false
 
 const sugerenciasPokemons = document.querySelector("#pokemons")
 const pokemonCard = document.querySelector("#card")
+const pokedex = document.querySelector("#pokedex")
 
 let singlePokemon = null
 let pokemonMatches = null
@@ -47,6 +48,7 @@ const showPokemon = async () => {
 
     // Visibilidad de los contenedores
     sugerenciasPokemons.style.display = "none"
+    pokedex.style.display = "flex"
     pokemonCard.style.display = "block"
 
     // Mostrar información del pokemon en el HTML
@@ -90,6 +92,7 @@ const showPokemon = async () => {
 const showPokemons = () => {
     // Visibilidad de los contenedores
     sugerenciasPokemons.style.display = "grid"
+    pokedex.style.display = "none"
     pokemonCard.style.display = "none"
 
     // Mostrar los pokemons en el HTML
