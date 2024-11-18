@@ -1,4 +1,5 @@
 const search = document.querySelector("#search")
+const iconSearch = document.querySelector("#poke-search")
 let searchValue = null
 let back = false
 
@@ -52,6 +53,7 @@ const showPokemon = async () => {
     pokemonCard.style.display = "block"
 
     // Mostrar información del pokemon en el HTML
+    iconSearch.src = pokemonData.sprites.other.dream_world.front_default
     pokemonCard.innerHTML = `<h2 class="pokemon-name">
     ${pokemonData.name}</h2>
     <div class="pokemon-imgs">
