@@ -19,7 +19,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Lato", sans-serif;
 }
 
 header {
@@ -169,26 +169,24 @@ main {
 
 #card {
     display: none;
-    width: 21vw;
+    width: 40vw;
     overflow: hidden;
-    height: 6vh;
-    border: 0.75rem solid #000;
+    /* border: 0.75rem solid #000; */
     border-radius: 1rem;
     /* background: linear-gradient(to bottom, #ffffcc, var(--yellow)); */
     background-image: var(--card-bg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    font-family: "Arial", sans-serif;
-    font-family: "";
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 1); */
     padding: 15px;
     text-align: center;
-    position: relative;
+    /* position: relative;
     top: 11%;
     left: 2%;
     min-width: 388px;
-    min-height: 480px;
+    min-height: 480px; */
+    transition: all 0.3s ease;
 }
 
 #card .pokemon-name {
@@ -197,7 +195,7 @@ main {
     margin-top: 3px;
     text-transform: upp;
     border-radius: 1rem;
-    background-color: rgb(255, 255, 44);
+    /* background-color: rgb(255, 255, 44); */
 }
 
 .pokemon-stats {
@@ -236,10 +234,39 @@ main {
 }
 
 /* Estilos para el modo oscuro */
+#background-image {
+    opacity: 0;
+    height: 66vh;
+    max-width: 100%;
+    position: absolute;
+    pointer-events: none;
+}
+
+.animacion-imagen {
+    animation: transicion 3s ease-in-out;
+}
+
+@keyframes transicion {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 body.modo-oscuro {
     background-color: #121212;
     color: #ffffff;
 }
+
+body.susto {
+    background-image: url(./img/797505286039631782-transformed.png);
+}
+
 header.modo-oscuro {
     background-color: var(--red);
 }
@@ -251,6 +278,7 @@ header.modo-oscuro {
     background-color: #464641;
     color: #ffffff;
 }
+
 #card.modo-oscuro {
     border-color: #666666;
     color: #ffffff;
@@ -273,7 +301,7 @@ footer {
 #logo {
     width: 3%;
     position: absolute;
-    right: 0; 
+    right: 0;
 }
 
 footer p {

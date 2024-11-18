@@ -50,25 +50,40 @@ const showPokemon = async () => {
     sugerenciasPokemons.style.display = "none"
     pokemonCard.style.display = "block"
 
+    let frontIMG = null
+
     // Mostrar información del pokemon en el HTML
-    iconSearch.src = pokemonData.sprites.other.dream_world.front_default
+    if (pokemonData.sprites.other.dream_world.front_default) {
+        frontIMG = pokemonData.sprites.other.dream_world.front_default
+    } else {
+        frontIMG = pokemonData.sprites.front_default
+    }
+
+    iconSearch.src = frontIMG
     pokemonCard.innerHTML = `<h2 class="pokemon-name">
     ${pokemonData.name}</h2>
     <div class="pokemon-imgs">
-        <img src="${
-            pokemonData.sprites.other.dream_world.front_default
-            }" alt="${pokemonData.name} frontal"/>
-            <img src="${pokemonData.sprites.back_default}" alt="${pokemonData.name} posterior"/>
+        <img src="${frontIMG}" alt="${pokemonData.name} frontal"/>
+            <img src="${pokemonData.sprites.back_default}" alt="${
+        pokemonData.name
+    } posterior"/>
          <div class="pokemon-data">
             <p class="altura">Height: ${pokemonData.height} </p>
             <p class="altura">Weight: ${pokemonData.weight} </p>
          </div>
         <div class="pokemon-stats">
             <p class="health">${pokemonData.stats[0].stat.name}: ${
-            pokemonData.stats[0].base_stat} </p>
-            <p class="attack">${pokemonData.stats[1].stat.name}: ${pokemonData.stats[1].base_stat} </p>
-            <p class="defense">${pokemonData.stats[2].stat.name}: ${pokemonData.stats[2].base_stat} </p>
-            <p class="speed">${pokemonData.stats[5].stat.name}: ${pokemonData.stats[5].base_stat} </p>
+        pokemonData.stats[0].base_stat
+    } </p>
+            <p class="attack">${pokemonData.stats[1].stat.name}: ${
+        pokemonData.stats[1].base_stat
+    } </p>
+            <p class="defense">${pokemonData.stats[2].stat.name}: ${
+        pokemonData.stats[2].base_stat
+    } </p>
+            <p class="speed">${pokemonData.stats[5].stat.name}: ${
+        pokemonData.stats[5].base_stat
+    } </p>
          </div>
            <div class="pokemon-types">
            <h3>Types</h3>
@@ -78,7 +93,110 @@ const showPokemon = async () => {
            </div>
     </div>`
     back = false
-    console.log(pokemonData.types[0].type.name)
+    // console.log(pokemonData.types[0].type.name)
+    switch (pokemonData.types[0].type.name) {
+        case "grass":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/grass.png)"
+            )
+            break
+        case "water":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/water.png)"
+            )
+            break
+        case "psychic":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/psychic.png)"
+            )
+            break
+        case "metal":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/metal_modern.png)"
+            )
+            break
+        case "electric":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/lightning.png)"
+            )
+            break
+        case "fire":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/fire_modern.png)"
+            )
+            break
+        case "fighting":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/fighting.png)"
+            )
+            break
+        case "dragon":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/dragon_new.png)"
+            )
+            break
+        case "darkness":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/darkness_modern.png)"
+            )
+            break
+        case "fairy":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/fairy.png)"
+            )
+            break
+        case "poison":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/poison.png)"
+            )
+            break
+        case "rock":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/rock.png)"
+            )
+            break
+        case "ground":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/ground.png)"
+            )
+            break
+        case "ghost":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/ghost.png)"
+            )
+            break
+        case "flying":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/flying.png)"
+            )
+            break
+        case "bug":
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/bug.png)"
+            )
+            break
+        default:
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                "url(./img/texturas/colorless.png)"
+            )
+    }
 }
 
 const showPokemons = () => {
@@ -126,8 +244,15 @@ pokemonCard.addEventListener("click", (event) => {
 
 document.querySelector("#modonoche .boton").addEventListener("click", () => {
     document.body.classList.toggle("modo-oscuro")
+    document
+        .querySelector("#background-image")
+        .classList.toggle("animacion-imagen")
     document.querySelector("header").classList.toggle("modo-oscuro")
     document.getElementById("search-container").classList.toggle("modo-oscuro")
     document.getElementById("card").classList.toggle("modo-oscuro")
     document.querySelector(".resultados-grid").classList.toggle("modo-oscuro")
+})
+
+document.querySelector("#modonoche .boton").addEventListener("dbclick", () => {
+    document.body.classList.toggle("susto")
 })
