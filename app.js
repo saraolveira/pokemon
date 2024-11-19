@@ -38,6 +38,8 @@ const searchPokemons = async () => {
             showPokemon()
         } else if (pokemonMatches.length > 1) {
             showPokemons()
+        } else {
+            noPokemons()
         }
     })
 }
@@ -93,7 +95,8 @@ const showPokemon = async () => {
            </div>
     </div>`
     back = false
-    // console.log(pokemonData.types[0].type.name)
+
+    // Cambiar imagen de fondo en relación al tipo de pokemon
     switch (pokemonData.types[0].type.name) {
         case "grass":
             document.documentElement.style.setProperty(
@@ -217,6 +220,9 @@ const showPokemons = () => {
     sugerenciasPokemons.innerHTML = pokemonsHTML
 }
 
+const noPokemons = () => {
+    console.log("No hay coincidencia de Pokemons")
+}
 searchPokemons()
 
 // EventListener para los clicks en las sugerencias
@@ -253,7 +259,7 @@ document.querySelector("#modonoche .boton").addEventListener("click", () => {
 })
 
 document.querySelector("main").addEventListener("dblclick", () => {
-    console.log('da un susto')    
+    console.log("da un susto")
     document.getElementById("susto").classList.toggle("susto")
     document.getElementById("audio-susto").play()
     // document.querySelector("body.susto").classList.toggle("susto")
