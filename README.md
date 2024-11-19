@@ -33,7 +33,7 @@ Proyecto del Grupo B para el bootcamp de Hack A Boss
 -   [x] Mostrar la carta de un pokemon cuando es coincidencia exacta
     -   [x] Llamada a fetch con la url api del pokemon
     -   [x] Mostrar la info del pokemon
--   [ ] Mostrar mensaje cuando no hay matches
+-   [x] Mostrar mensaje cuando no hay matches
 -   [x] EXTRA. Click en pokemon (cuando hay coincidencias) para mostrar su carta
 
 ### EXTRAS

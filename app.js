@@ -80,17 +80,19 @@ const showPokemon = async () => {
     }
 
     iconSearch.src = frontIMG
-    pokemonCard.innerHTML = `<h2 class="pokemon-name">
-    ${pokemonData.name}</h2>
+    pokemonCard.innerHTML = `<div class="pokemon-superior"><h2 class="pokemon-name">
+    ${pokemonData.name}</h2> <div class="type-icon" >
+            <svg viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m342.198.501279c.373-.5317158 1.105-.660937 1.637-.288625l36.354 25.455546c.532.3723.661 1.1051.289 1.6368l-50.599 72.2623c24.599 7.8587 41.358 16.3357 41.358 16.3357s-40.964 70.462-110.443 70.462-118.85-65.672-118.85-65.672 17.506-11.172 43.456-20.7539l-55.5-66.1415c-.417-.4973-.352-1.2386.145-1.6558l33.997-28.52715c.498-.41723 1.239-.35238 1.656.14487l70.272 83.74688c6.017-.6806 12.147-1.061 18.333-1.061 8.891 0 17.771.6759 26.44 1.8229zm13.746 189.200721c18.541-13.242 46.597-47.804 46.597-47.804s71.664 56.79 71.664 177.206c0 120.415-123.896 192.888-123.896 192.888s-59.195-59.781-73.727-135.562c-14.531-75.781 21.496-159.927 21.496-159.927s39.324-13.559 57.866-26.801zm-199.683 0c-18.541-13.242-46.597-47.804-46.597-47.804s-71.664 56.79-71.664 177.206c0 120.415 123.896 192.888 123.896 192.888s59.195-59.781 73.727-135.562c14.531-75.781-21.496-159.927-21.496-159.927s-39.324-13.559-57.866-26.801z" /></svg>
+            </div></div>
     <div class="pokemon-imgs">
-        <img src="${frontIMG}" alt="${pokemonData.name} frontal"/>
+
+            <img src="${frontIMG}" alt="${pokemonData.name}" class="imagen-frontal"/>
             <img src="${pokemonData.sprites.back_default}" alt="${
         pokemonData.name
-    } posterior"/>
-         <div class="pokemon-data">
-            <p class="altura">Height: ${pokemonData.height} </p>
-            <p class="altura">Weight: ${pokemonData.weight} </p>
-         </div>
+    } " class="imagen-trasera" />
+    </div>
+<div class="pokemon-column">
+  
         <div class="pokemon-stats">
             <p class="health">${pokemonData.stats[0].stat.name}: ${
         pokemonData.stats[0].base_stat
@@ -105,11 +107,17 @@ const showPokemon = async () => {
         pokemonData.stats[5].base_stat
     } </p>
          </div>
+                <div class="pokemon-data">
+            <p class="altura">Height: ${pokemonData.height} </p>
+            <p class="ancho">Weight: ${pokemonData.weight} </p>
+         </div>
+         </div>
            <div class="pokemon-types">
            <h3>Types</h3>
            ${pokemonData.types
                .map((type) => `<p>${type.type.name}</p>`)
                .join("")}
+            
            </div>
     </div>`
     back = false
@@ -306,6 +314,20 @@ pokemonCard.addEventListener("mouseleave", () => {
     document.removeEventListener("mousemove", followMouse)
 })
 
+// Parte de atras de la tarjeta
+
+pokemonCard.addEventListener("click", () => {
+    pokemonCard.innerHTML = `
+    <div id="back-card">
+    <img src="./img/logo/pokelogo.png" class="card-text"/>
+    <img src="./img/pokeball.png" class="card-pokeball"/></div>`
+
+    if (back) {
+        showPokemon()
+    }
+    back = true
+})
+
 // EventListener para los clicks en las sugerencias
 sugerenciasPokemons.addEventListener("click", (event) => {
     if (event.target.tagName === "LI") {
@@ -318,14 +340,6 @@ sugerenciasPokemons.addEventListener("click", (event) => {
     }
 })
 
-pokemonCard.addEventListener("click", (event) => {
-    pokemonCard.innerHTML = "<p>hola</p>"
-
-    if (back) {
-        showPokemon()
-    }
-    back = true
-})
 
 // Evento para funcionamiento del modo oscuro
 
