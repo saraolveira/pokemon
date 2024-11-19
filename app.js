@@ -4,22 +4,39 @@ let searchValue = null
 let back = false
 
 const sugerenciasPokemons = document.querySelector("#pokemons")
+const noMatches = document.querySelector("#no-matches")
 const pokemonCard = document.querySelector("#card")
 
 let singlePokemon = null
 let pokemonMatches = null
 
 const getPokemons = async (url) => {
-    const response = await fetch(url)
+     try {
+        const response = await fetch(url)
 
-    return response.json()
+        if (!response.ok) {
+            throw new Error(`No se recibieron pokemons`)
+        }
+
+        const data = await response.json()
+        return data
+
+    } catch (error) {
+        pokemonError()
+    }
 }
 
 const searchPokemons = async () => {
+
     const data = await getPokemons(
         "https://pokeapi.co/api/v2/pokemon?limit=1126"
     )
-    const pokemons = data.results
+
+    let pokemons = null
+
+    if(data) {
+        pokemons = data.results
+    }
 
     search.addEventListener("input", () => {
         searchValue = search.value.toLowerCase()
@@ -50,7 +67,8 @@ const showPokemon = async () => {
 
     // Visibilidad de los contenedores
     sugerenciasPokemons.style.display = "none"
-    pokemonCard.style.display = "block"
+    pokemonCard.style.display = "flex"
+    noMatches.style.display = "none"
 
     let frontIMG = null
 
@@ -126,6 +144,14 @@ const showPokemon = async () => {
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/lightning.png)"
+            )
+            document.documentElement.style.setProperty(
+                "--color1",
+                "#f2dd4a"
+            )
+            document.documentElement.style.setProperty(
+                "--color2",
+                "#f4f5cf"
             )
             break
         case "fire":
@@ -206,6 +232,7 @@ const showPokemons = () => {
     // Visibilidad de los contenedores
     sugerenciasPokemons.style.display = "grid"
     pokemonCard.style.display = "none"
+    noMatches.style.display = "none"
 
     // Mostrar los pokemons en el HTML
     const pokemonsHTML = pokemonMatches
@@ -221,9 +248,63 @@ const showPokemons = () => {
 }
 
 const noPokemons = () => {
-    console.log("No hay coincidencia de Pokemons")
+    sugerenciasPokemons.style.display = "none"
+    pokemonCard.style.display = "none"
+    noMatches.style.display = "block"
+    
+    noMatches.innerHTML = `<p>No se ha capturado ningún pokemon. Intentálo de nuevo</p>`
 }
+
+const pokemonError = () => {
+    sugerenciasPokemons.style.display = "none"
+    pokemonCard.style.display = "none"
+    noMatches.style.display = "block"
+    
+    noMatches.innerHTML = `<p>Ha ocurrido un error. Inténtalo más tarde</p>`
+}
+
 searchPokemons()
+
+// Efectos carta pokemon
+let rect = null
+
+const followMouse = (event) => {
+    const mouseX = event.clientX
+    const mouseY = event.clientY
+    const leftX = mouseX - rect.x
+    const topY = mouseY - rect.y
+    const center = {
+        x: leftX - rect.width / 2,
+        y: topY - rect.height / 2,
+    }
+    const distance = Math.sqrt(center.x ** 2 + center.y ** 2)
+
+    pokemonCard.style.transform = `
+    rotate3d(
+      ${center.y / 100},
+      ${-center.x / 100},
+      0,
+      ${Math.log(distance) * 4}deg
+    )
+  `
+
+    const positionX = leftX / 4
+    const positionY = topY / 5
+
+
+    document.documentElement.style.setProperty("--x", -event.offsetX + "px")
+    document.documentElement.style.setProperty("--y", -event.offsetY + "px")
+
+}
+
+pokemonCard.addEventListener("mouseenter", () => {
+    rect = pokemonCard.getBoundingClientRect()
+    pokemonCard.addEventListener("mousemove", followMouse)
+})
+
+pokemonCard.addEventListener("mouseleave", () => {
+    document.removeEventListener("mousemove", followMouse)
+})
 
 // EventListener para los clicks en las sugerencias
 sugerenciasPokemons.addEventListener("click", (event) => {
@@ -250,15 +331,17 @@ pokemonCard.addEventListener("click", (event) => {
 
 document.querySelector("#modonoche .boton").addEventListener("click", () => {
     document.body.classList.toggle("modo-oscuro")
-    document
-        .querySelector("#background-image")
+    document.querySelector("#background-image")
         .classList.toggle("animacion-imagen")
     document.querySelector("header").classList.toggle("modo-oscuro")
     document.getElementById("search-container").classList.toggle("modo-oscuro")
+    document.querySelector("main").classList.toggle("modo-oscuro")
     document.getElementById("card").classList.toggle("modo-oscuro")
+    document.querySelector("footer").classList.toggle("modo-oscuro")
+    document.querySelector(".frik").classList.toggle("modo-oscuro")
 })
 
-document.querySelector("main").addEventListener("dblclick", () => {
+document.querySelector("#modonoche .boton").addEventListener("dblclick", () => {
     console.log("da un susto")
     document.getElementById("susto").classList.toggle("susto")
     document.getElementById("audio-susto").play()
