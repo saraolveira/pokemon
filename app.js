@@ -255,5 +255,6 @@ document.querySelector("#modonoche .boton").addEventListener("click", () => {
 document.querySelector("main").addEventListener("dblclick", () => {
     console.log('da un susto')    
     document.getElementById("susto").classList.toggle("susto")
+    document.getElementById("audio-susto").play()
     // document.querySelector("body.susto").classList.toggle("susto")
 })
