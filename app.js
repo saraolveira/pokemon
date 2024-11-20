@@ -119,6 +119,10 @@ const showPokemon = async () => {
                .join("")}
             
            </div>
+           <div class="pokemon-skills">
+                <p> Skills: ${pokemonData.abilities.length}</p>
+                <p> Moves: ${pokemonData.moves.length}</p>
+           </div>
     </div>`
     back = false
 

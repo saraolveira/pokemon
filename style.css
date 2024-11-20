@@ -201,8 +201,9 @@ main {
     display: none;
     color: #000;
     width: 20rem;
-    height: 30rem;
+    max-height: 34rem;
     padding: 1rem;
+    padding-bottom: 0;
     border-radius: 1rem;
     background-image: var(--card-bg);
     background-repeat: no-repeat;
@@ -273,7 +274,6 @@ main {
 #card .pokemon-name {
     font-size: 20px;
     font-weight: bold;
-    margin-top: 3px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-style: oblique;
     letter-spacing: 2px;
@@ -289,7 +289,15 @@ main {
 }
 
 .pokemon-stats {
+    width: 8rem;
+    height: 5.2rem;
+    text-align: center;
     text-transform: uppercase;
+    border-radius: 2rem;
+    border-style: ridge;
+    background-color:rgba(255, 255, 255, 0.3);
+    position: relative;
+    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.3);
 }
 
 .pokemon-card {
@@ -300,10 +308,17 @@ main {
 }
 
 .pokemon-data {
+    width: 8rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: space-evenly;
+    align-items: center;
     text-transform: uppercase;
+    border-radius: 2rem;
+    border-style: ridge;
+    background-color:rgba(255, 255, 255, 0.3);
+    position: relative;
+    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.3);
 }
 
 .pokemon-imgs {
@@ -346,6 +361,24 @@ main {
     text-transform: uppercase;
 }
 
+.pokemon-types p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokemon-skills {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: larger;
+    border-radius: 2rem;
+    border-style: ridge;
+    background-color:rgba(255, 255, 255, 0.3);
+    position: relative;
+    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.3);
+    padding: 0.25rem;
+}
+
 .type-icon {
     width: 2rem;
     fill: var(--color1);
@@ -355,7 +388,6 @@ main {
 
 #back-card {
     width: 100%;
-    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
