@@ -509,21 +509,16 @@ footer.modo-oscuro {
     color: var(--yellow);
 }
 
-/* Estilo del boton  */
-section.boton {
-    background-color: var(--yellow);
-    color: #050404;
-    padding: 10px;
-    border-radius: 25px;
-    text-align: center;
-    transition: background-color 0.3s, color 0.3s;
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
+#modonoche {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+}
+#sol {
+    width: 20%;
+    height: auto;
     cursor: pointer;
 }
-
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media (min-width: 600px) {
 }
