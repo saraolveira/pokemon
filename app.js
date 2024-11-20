@@ -11,7 +11,7 @@ let singlePokemon = null
 let pokemonMatches = null
 
 const getPokemons = async (url) => {
-     try {
+    try {
         const response = await fetch(url)
 
         if (!response.ok) {
@@ -20,21 +20,19 @@ const getPokemons = async (url) => {
 
         const data = await response.json()
         return data
-
     } catch (error) {
         pokemonError()
     }
 }
 
 const searchPokemons = async () => {
-
     const data = await getPokemons(
         "https://pokeapi.co/api/v2/pokemon?limit=1126"
     )
 
     let pokemons = null
 
-    if(data) {
+    if (data) {
         pokemons = data.results
     }
 
@@ -86,7 +84,9 @@ const showPokemon = async () => {
             </div></div>
     <div class="pokemon-imgs">
 
-            <img src="${frontIMG}" alt="${pokemonData.name}" class="imagen-frontal"/>
+            <img src="${frontIMG}" alt="${
+        pokemonData.name
+    }" class="imagen-frontal"/>
             <img src="${pokemonData.sprites.back_default}" alt="${
         pokemonData.name
     } " class="imagen-trasera" />
@@ -133,110 +133,153 @@ const showPokemon = async () => {
                 "--card-bg",
                 "url(./img/texturas/grass.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#93cd3b")
+            document.documentElement.style.setProperty("--color2", "#ecffad")
+            pokemonCard.style.color = "#000"
             break
         case "water":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/water.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#298fe5")
+            document.documentElement.style.setProperty("--color2", "#cfecfd")
+            pokemonCard.style.color = "#000"
             break
         case "psychic":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/psychic.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#ab62ae")
+            document.documentElement.style.setProperty("--color2", "#eed6f1")
+            pokemonCard.style.color = "#000"
             break
         case "metal":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/metal_modern.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#2f3125")
+            document.documentElement.style.setProperty("--color2", "#f1f0ed")
+            pokemonCard.style.color = "#000"
             break
         case "electric":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/lightning.png)"
             )
-            document.documentElement.style.setProperty(
-                "--color1",
-                "#f2dd4a"
-            )
-            document.documentElement.style.setProperty(
-                "--color2",
-                "#f4f5cf"
-            )
+            document.documentElement.style.setProperty("--color1", "#f2dd4a")
+            document.documentElement.style.setProperty("--color2", "#f4f5cf")
+            pokemonCard.style.color = "#000"
             break
         case "fire":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/fire_modern.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#ed4230")
+            document.documentElement.style.setProperty("--color2", "#f6af74")
+            pokemonCard.style.color = "#000"
             break
         case "fighting":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/fighting.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#e6700c")
+            document.documentElement.style.setProperty("--color2", "#f9ca8e")
+            pokemonCard.style.color = "#000"
             break
         case "dragon":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/dragon_new.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#514330")
+            document.documentElement.style.setProperty("--color2", "#70914f")
+            pokemonCard.style.color = "#000"
             break
-        case "darkness":
+        case "dark":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/darkness_modern.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#090a04")
+            document.documentElement.style.setProperty("--color2", "#375754")
+            pokemonCard.style.color = "#fff"
             break
         case "fairy":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/fairy.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#ff1470")
+            document.documentElement.style.setProperty("--color2", "#ffdedc")
+            pokemonCard.style.color = "#000"
             break
         case "poison":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/poison.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#557866")
+            document.documentElement.style.setProperty("--color2", "#d4efcf")
+            pokemonCard.style.color = "#000"
             break
         case "rock":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/rock.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#b2c29c")
+            document.documentElement.style.setProperty("--color2", "#e6f7d1")
+            pokemonCard.style.color = "#000"
             break
         case "ground":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/ground.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#75550c")
+            document.documentElement.style.setProperty("--color2", "#f5db78")
+            pokemonCard.style.color = "#000"
             break
         case "ghost":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/ghost.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#503a6f")
+            document.documentElement.style.setProperty("--color2", "#e7e3ed")
+            pokemonCard.style.color = "#000"
             break
         case "flying":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/flying.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#90a4a8")
+            document.documentElement.style.setProperty("--color2", "#e1e3e4")
+            pokemonCard.style.color = "#000"
             break
         case "bug":
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/bug.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#d2d455")
+            document.documentElement.style.setProperty("--color2", "#f7f99e")
+            pokemonCard.style.color = "#000"
             break
         default:
             document.documentElement.style.setProperty(
                 "--card-bg",
                 "url(./img/texturas/colorless.png)"
             )
+            document.documentElement.style.setProperty("--color1", "#bebab4")
+            document.documentElement.style.setProperty("--color2", "#e0e3e6")
+            pokemonCard.style.color = "#000"
     }
 }
 
@@ -263,7 +306,7 @@ const noPokemons = () => {
     sugerenciasPokemons.style.display = "none"
     pokemonCard.style.display = "none"
     noMatches.style.display = "block"
-    
+
     noMatches.innerHTML = `<p>No se ha capturado ningún pokemon. Intentálo de nuevo</p>`
 }
 
@@ -271,7 +314,7 @@ const pokemonError = () => {
     sugerenciasPokemons.style.display = "none"
     pokemonCard.style.display = "none"
     noMatches.style.display = "block"
-    
+
     noMatches.innerHTML = `<p>Ha ocurrido un error. Inténtalo más tarde</p>`
 }
 
@@ -303,10 +346,8 @@ const followMouse = (event) => {
     const positionX = leftX / 4
     const positionY = topY / 5
 
-
     document.documentElement.style.setProperty("--x", -event.offsetX + "px")
     document.documentElement.style.setProperty("--y", -event.offsetY + "px")
-
 }
 
 pokemonCard.addEventListener("mouseenter", () => {
@@ -344,12 +385,12 @@ sugerenciasPokemons.addEventListener("click", (event) => {
     }
 })
 
-
 // Evento para funcionamiento del modo oscuro
 
 document.querySelector("#modonoche .boton").addEventListener("click", () => {
     document.body.classList.toggle("modo-oscuro")
-    document.querySelector("#background-image")
+    document
+        .querySelector("#background-image")
         .classList.toggle("animacion-imagen")
     document.querySelector("header").classList.toggle("modo-oscuro")
     document.getElementById("search-container").classList.toggle("modo-oscuro")
@@ -357,16 +398,15 @@ document.querySelector("#modonoche .boton").addEventListener("click", () => {
     document.getElementById("card").classList.toggle("modo-oscuro")
     document.querySelector("footer").classList.toggle("modo-oscuro")
     document.querySelector(".frik").classList.toggle("modo-oscuro")
-    const Imagendelboton = document.getElementById("sol");
-    if(Imagendelboton.src.includes("sol.png")){
-    Imagendelboton.src = "./img/luna.png";}
-    else {
-    Imagendelboton.src = "./img/sol.png";
-    };
+    const Imagendelboton = document.getElementById("sol")
+    if (Imagendelboton.src.includes("sol.png")) {
+        Imagendelboton.src = "./img/luna.png"
+    } else {
+        Imagendelboton.src = "./img/sol.png"
+    }
 })
 
 document.querySelector("#modonoche .boton").addEventListener("dblclick", () => {
-    console.log("da un susto")
     document.getElementById("susto").classList.toggle("susto")
     document.getElementById("audio-susto").play()
     // document.querySelector("body.susto").classList.toggle("susto")
