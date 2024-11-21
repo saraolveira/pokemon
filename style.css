@@ -449,6 +449,7 @@ main {
 .favorite-pokemons {
     height: 100%;
     width: 20rem;
+    padding: 1rem 0;
     position: absolute;
     top: 0;
     right: 0;
@@ -461,13 +462,21 @@ main {
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
+    overflow-y: auto;
 }
 
 .pokemon-favorito {
-    width: 50%;
+    width: 70%;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 2rem;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.pokemon-favorito img {
+    max-width: 80%;
 }
 
 .visible {
@@ -575,7 +584,6 @@ footer {
     text-align: center;
     background-color: white;
     color: #000;
-    padding-bottom: 1rem;
 }
 
 #logo {
@@ -605,7 +613,6 @@ footer.modo-oscuro {
 }
 #sol {
     width: 20%;
-    height: auto;
     cursor: pointer;
 }
 /* Small devices (portrait tablets and large phones, 600px and up) */

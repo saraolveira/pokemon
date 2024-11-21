@@ -381,14 +381,26 @@ const pokemonError = () => {
 const catchPokemon = (pokemon) => {
     favoritePokemons.push(pokemon)
     localStorage.setItem("favoritePokemons", JSON.stringify(favoritePokemons))
-    console.log(favoritePokemons)
+    favoriteSection.innerHTML = `${favoritePokemons
+        .map(
+            (pokemon) =>`<div class="pokemon-favorito"><p class="pokemon-name">${pokemon.name}</p>
+            <img src="${pokemon.sprites.other.dream_world.front_default}" />
+                <div class="type-icons" >
+        ${pokemon.types.map((type) => typeIcons[type.type.name]).join("")}</div>
+            </div>`
+        ).join("")
+       }`
 }
 
 const showFavorites = () => {
     if(favoritePokemons.length > 0) {
         favoriteSection.innerHTML = `${favoritePokemons
             .map(
-                (pokemon) =>`<div class="pokemon-favorito">${pokemon.name}</div>`
+                (pokemon) =>`<div class="pokemon-favorito"><p class="pokemon-name">${pokemon.name}</p>
+                  <img src="${pokemon.sprites.other.dream_world.front_default}" />
+                                  <div class="type-icons" >
+        ${pokemon.types.map((type) => typeIcons[type.type.name]).join("")}</div>
+                </div>`
             ).join("")
            }`
     }
