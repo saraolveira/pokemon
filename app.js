@@ -6,9 +6,17 @@ let back = false
 const sugerenciasPokemons = document.querySelector("#pokemons")
 const noMatches = document.querySelector("#no-matches")
 const pokemonCard = document.querySelector("#card")
+const favoriteSection = document.querySelector(".favorite-pokemons")
+const favoriteButton = document.querySelector("#favorites-button")
 
 let singlePokemon = null
 let pokemonMatches = null
+let favoritePokemons= []
+if (localStorage.getItem("favoritePokemons")) {
+    favoritePokemons = JSON.parse(localStorage.getItem("favoritePokemons"))
+    console.log(favoritePokemons)
+}
+
 
 const typeIcons = {
     bug: `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m342.198.501279c.373-.5317158 1.105-.660937 1.637-.288625l36.354 25.455546c.532.3723.661 1.1051.289 1.6368l-50.599 72.2623c24.599 7.8587 41.358 16.3357 41.358 16.3357s-40.964 70.462-110.443 70.462-118.85-65.672-118.85-65.672 17.506-11.172 43.456-20.7539l-55.5-66.1415c-.417-.4973-.352-1.2386.145-1.6558l33.997-28.52715c.498-.41723 1.239-.35238 1.656.14487l70.272 83.74688c6.017-.6806 12.147-1.061 18.333-1.061 8.891 0 17.771.6759 26.44 1.8229zm13.746 189.200721c18.541-13.242 46.597-47.804 46.597-47.804s71.664 56.79 71.664 177.206c0 120.415-123.896 192.888-123.896 192.888s-59.195-59.781-73.727-135.562c-14.531-75.781 21.496-159.927 21.496-159.927s39.324-13.559 57.866-26.801zm-199.683 0c-18.541-13.242-46.597-47.804-46.597-47.804s-71.664 56.79-71.664 177.206c0 120.415 123.896 192.888 123.896 192.888s59.195-59.781 73.727-135.562c14.531-75.781-21.496-159.927-21.496-159.927s-39.324-13.559-57.866-26.801z" /></svg>`,
@@ -99,11 +107,31 @@ const showPokemon = async () => {
     }
 
     iconSearch.src = frontIMG
-    pokemonCard.innerHTML = `
+    pokemonCard.innerHTML 
+    = `
     <div class="pokemon-superior">
         <h2 class="pokemon-name">${pokemonData.name}</h2>
         <div class="type-icons" >
         ${pokemonData.types.map((type) => typeIcons[type.type.name]).join("")}
+      
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1280.000000 1181.000000 " class="favorite">
+
+    <g transform="translate(0.000000,1181.000000) scale(0.100000,-0.100000)">
+    <path d="M6327 11292 c-60 -180 -161 -489 -227 -687 -65 -198 -233 -709 -373
+    -1135 -141 -426 -367 -1114 -503 -1527 l-248 -753 -2358 0 c-1297 0 -2358 -3
+    -2358 -7 0 -5 170 -130 378 -279 207 -149 1057 -758 1887 -1353 831 -596 1518
+    -1091 1528 -1100 20 -19 55 94 -420 -1346 -187 -570 -344 -1047 -628 -1910
+    -141 -429 -286 -869 -322 -978 -36 -109 -63 -201 -60 -204 7 -6 -236 -180
+    1912 1362 1012 726 1855 1331 1872 1343 l33 23 762 -548 c2447 -1758 3053
+    -2191 3056 -2188 2 2 -46 153 -106 337 -61 183 -216 655 -346 1048 -511 1556
+    -712 2168 -811 2470 -145 440 -185 563 -185 575 0 6 855 623 1900 1373 1045
+    750 1900 1368 1900 1373 0 5 -909 10 -2357 11 l-2356 3 -164 500 c-90 275
+    -272 826 -403 1225 -131 399 -383 1166 -560 1705 -177 539 -325 983 -329 987
+    -4 5 -55 -139 -114 -320z"/>
+    </g>
+    </svg>
+
         </div>
     </div>
     <div class="pokemon-imgs">
@@ -149,7 +177,7 @@ const showPokemon = async () => {
                .join("")}
             
     </div>
-`
+    `
     back = false
 
     // Cambiar imagen de fondo en relación al tipo de pokemon
@@ -307,6 +335,12 @@ const showPokemon = async () => {
             document.documentElement.style.setProperty("--color2", "#e0e3e6")
             pokemonCard.style.color = "#000"
     }
+
+    const catchButton = document.querySelector('.favorite')
+    catchButton.addEventListener('click', (event) => {
+        event.stopPropagation()
+        catchPokemon(pokemonData)
+    })
 }
 
 const showPokemons = () => {
@@ -344,7 +378,28 @@ const pokemonError = () => {
     noMatches.innerHTML = `<p>Ha ocurrido un error. Inténtalo más tarde</p>`
 }
 
+const catchPokemon = (pokemon) => {
+    favoritePokemons.push(pokemon)
+    localStorage.setItem("favoritePokemons", JSON.stringify(favoritePokemons))
+    console.log(favoritePokemons)
+}
+
+const showFavorites = () => {
+    if(favoritePokemons.length > 0) {
+        favoriteSection.innerHTML = `${favoritePokemons
+            .map(
+                (pokemon) =>`<div class="pokemon-favorito">${pokemon.name}</div>`
+            ).join("")
+           }`
+    }
+
+    favoriteButton.addEventListener('click', () => {
+        favoriteSection.classList.toggle("visible")
+    })
+}
+
 searchPokemons()
+showFavorites()
 
 // Efectos carta pokemon
 let rect = null

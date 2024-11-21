@@ -60,6 +60,7 @@
 body {
     font-family: "Lato", sans-serif;
     user-select: none;
+    overflow-x: hidden;
 }
 
 header {
@@ -70,6 +71,7 @@ header {
     background-color: var(--red);
     padding: 1rem;
     gap: 1vh;
+    position: relative;
 }
 
 #title {
@@ -101,14 +103,29 @@ h1 {
 
 #search-container img {
     width: 15vw;
+    /* flex-shrink: 0;
+    margin-right: 0.5rem; */
 }
 
 #search {
     width: 70vw;
     padding: 0.5rem 1rem;
-    border: none;
+    font-size: 1.3rem;
+    border: 2px solid #000000;
     border-radius: 3rem;
     font-size: 1.3rem;
+    outline: none;
+    transition: all 0.5s ease;
+}
+
+#search:hover {
+    border-color: #ff6347;
+    box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
+}
+
+#search-container input::placeholder {
+    color: #a0a0a0;
+    font-style: italic;
 }
 
 main {
@@ -120,6 +137,7 @@ main {
     padding: 1rem;
     padding-bottom: 1.5rem;
     background-color: var(--color2);
+    position: relative;
 }
 
 #pokemons {
@@ -389,6 +407,71 @@ main {
 
 .type-icons svg {
     width: 2rem;
+}
+
+.favorite {
+
+    /* background-color: yellow; */
+    /* clip-path: polygon(
+                50% 0%, 61% 35%, 98% 35%, 
+                68% 57%, 79% 91%, 50% 70%, 
+                21% 91%, 32% 57%, 2% 35%, 
+                39% 35%
+            ); */
+    /* border: none; */
+    fill: white;
+    stroke: black;
+    stroke-width: 1px;
+    cursor: pointer;
+    transition: fill 0.2s ease-in-out;
+    z-index: 3;
+
+}
+
+.favorite:hover {
+    fill: black;
+}
+
+#favorites-button {
+    width: 3rem;
+    fill: var(--dark-blue);
+    transition: fill 0.2s ease-in-out;
+    cursor: pointer;
+    position:absolute;
+    right: 1rem;
+    bottom: 1.7rem;
+}
+
+#favorites-button:hover {
+    fill: var(--yellow);
+}
+
+.favorite-pokemons {
+    height: 100%;
+    width: 20rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--color1);
+    transform: translateX(20rem);
+    z-index: 3;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pokemon-favorito {
+    width: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 2rem;
+    padding: 1rem;
+}
+
+.visible {
+    transform: translateX(0rem)
 }
 
 #back-card {
