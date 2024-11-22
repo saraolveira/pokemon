@@ -148,6 +148,7 @@ const searchPokemons = async () => {
 
     search.addEventListener("input", () => {
         searchValue = search.value.toLowerCase()
+        favoriteSection.classList.remove("visible")
 
         pokemonMatches = pokemons.filter((pokemon) => {
             const nameGuion = pokemon.name
@@ -455,6 +456,7 @@ const pokemonError = () => {
 // Favoritos
 const favoriteSection = document.querySelector(".favorite-pokemons")
 const favoriteButton = document.querySelector("#favorites-button")
+const favoriteModal = document.querySelector(".modal-fav")
 
 let favoritePokemons = []
 if (localStorage.getItem("favoritePokemons")) {
@@ -462,24 +464,50 @@ if (localStorage.getItem("favoritePokemons")) {
 }
 
 const catchPokemon = (pokemon) => {
-    favoritePokemons.push(pokemon)
-    localStorage.setItem("favoritePokemons", JSON.stringify(favoritePokemons))
-    favoriteSection.innerHTML = `${favoritePokemons
-        .map((pokemon) => {
-            let favType = pokemon.types[0].type.name
-            return `<div class="pokemon-favorito" style="background-image: url(./img/texturas/${
-                typeIcons[favType].bg
-            });"><p class="pokemon-name">${pokemon.name}</p>
-            <img src="${pokemon.sprites.other.dream_world.front_default}" />
-                <div class="type-icons" style="fill:${
-                    typeIcons[favType].color1
-                }">
-        ${pokemon.types
-            .map((type) => typeIcons[type.type.name].icon)
-            .join("")}</div>
-            </div>`
-        })
-        .join("")}`
+    favoriteModal.classList.add("modal-visible")
+    favoriteModal.innerHTML = `<p>¡Rápido! Usa la pokeball para capturar a <span class="pokemon-name">${pokemon.name}</span></p><div class="poke-fav"></div><div class="cancel"></div>`
+    const pokeFav = document.querySelector(".poke-fav")
+    const cancel = document.querySelector(".cancel")
+    pokeFav.addEventListener("click", () => {
+        pokeFav.style.animation = "shake 1.5s 2 ease-in-out"
+        pokeFav.classList.add("animate")
+        setTimeout(() => {
+            favoriteModal.innerHTML = `<p>¡Enhorabuena! Has capturado a <span class="pokemon-name">${pokemon.name}</span></p>`
+
+            favoritePokemons.push(pokemon)
+            localStorage.setItem(
+                "favoritePokemons",
+                JSON.stringify(favoritePokemons)
+            )
+            favoriteSection.innerHTML = `${favoritePokemons
+                .map((pokemon) => {
+                    let favType = pokemon.types[0].type.name
+                    return `<div class="pokemon-favorito" style="background-image: url(./img/texturas/${
+                        typeIcons[favType].bg
+                    });"><p class="pokemon-name">${pokemon.name}</p>
+                    <img src="${
+                        pokemon.sprites.other.dream_world.front_default
+                    }" />
+                        <div class="type-icons" style="fill:${
+                            typeIcons[favType].color1
+                        }">
+                ${pokemon.types
+                    .map((type) => typeIcons[type.type.name].icon)
+                    .join("")}</div>
+                    <div class="close-fav"></div>
+                    </div>`
+                })
+                .join("")}`
+        }, 3000)
+        setTimeout(() => {
+            favoriteModal.classList.remove("modal-visible")
+            favoriteSection.classList.add("visible")
+        }, 4000)
+    })
+
+    cancel.addEventListener("click", () => {
+        favoriteModal.classList.remove("modal-visible")
+    })
 }
 
 const showFavorites = () => {
@@ -497,6 +525,7 @@ const showFavorites = () => {
             ${pokemon.types
                 .map((type) => typeIcons[type.type.name].icon)
                 .join("")}</div>
+                <div class="close-fav"></div>
                 </div>`
             })
             .join("")}`
@@ -517,6 +546,37 @@ favoriteSection.addEventListener("click", (event) => {
 
         showPokemon()
         favoriteSection.classList.remove("visible")
+    }
+
+    if (event.target.classList[0] === "close-fav") {
+        const nameDelete = event.target.parentNode.firstChild.textContent
+        const index = favoritePokemons.findIndex(
+            (pokemon) => pokemon.name === nameDelete
+        )
+        favoritePokemons.splice(index, 1)
+
+        localStorage.setItem(
+            "favoritePokemons",
+            JSON.stringify(favoritePokemons)
+        )
+
+        favoriteSection.innerHTML = `${favoritePokemons
+            .map((pokemon) => {
+                let favType = pokemon.types[0].type.name
+                return `<div class="pokemon-favorito" style="background-image: url(./img/texturas/${
+                    typeIcons[favType].bg
+                });"><p class="pokemon-name">${pokemon.name}</p>
+                <img src="${pokemon.sprites.other.dream_world.front_default}" />
+                    <div class="type-icons" style="fill:${
+                        typeIcons[favType].color1
+                    }">
+            ${pokemon.types
+                .map((type) => typeIcons[type.type.name].icon)
+                .join("")}</div>
+                <div class="close-fav"></div>
+                </div>`
+            })
+            .join("")}`
     }
 })
 

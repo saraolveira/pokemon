@@ -156,7 +156,8 @@ main {
     margin-top: 1.7rem;
 }
 
-.poke-match {
+.poke-match,
+.poke-fav {
     cursor: pointer;
     width: 10rem;
     height: 10rem;
@@ -172,13 +173,15 @@ main {
     transition: all 0.2s ease-in-out;
 }
 
-.poke-match:hover {
+.poke-match:hover,
+.poke-fav:hover {
     background-color: var(--yellow);
     color: var(--dark-blue);
     transform: scale(1.06);
 }
 
-.poke-match:hover::after {
+.poke-match:hover::after,
+.poke-fav:hover::after {
     content: "";
     position: absolute;
     width: 1rem;
@@ -188,7 +191,8 @@ main {
     background-color: var(--dark-blue);
 }
 
-.poke-match::before {
+.poke-match::before,
+.poke-fav::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -196,7 +200,8 @@ main {
     background-color: #000;
 }
 
-.poke-match::after {
+.poke-match::after,
+.poke-fav::after {
     content: "";
     position: absolute;
     width: 1rem;
@@ -205,6 +210,68 @@ main {
     background-color: #fff;
     border: 0.5rem solid #000;
     transition: all 0.2s ease-in-out;
+}
+
+.poke-fav {
+    width: 4rem;
+    height: 4rem;
+    border: 0.2rem solid #000;
+}
+
+.poke-fav::before {
+    height: 0.2rem;
+}
+
+.poke-fav::after {
+    width: 0.7rem;
+    height: 0.7rem;
+    border: 0.2rem solid #000;
+}
+
+.animate::after {
+    animation: pulse 1.5s 2 ease-in-out, shake 1.5s 2 ease-in-out;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    33% {
+        transform: rotate(-30deg);
+    }
+
+    66% {
+        transform: rotate(20deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        background-color: var(--dark-blue);
+        width: 0.7rem;
+        height: 0.7rem;
+    }
+    50% {
+        background-color: var(--red);
+        width: 0.9rem;
+        height: 0.9rem;
+    }
+    100% {
+        background-color: #fff;
+        width: 0.7rem;
+        height: 0.7rem;
+    }
+}
+
+.poke-fav:hover::after {
+    width: 0.9rem;
+    height: 0.9rem;
+    border: 0.2rem solid #000;
 }
 
 .poke-match p {
@@ -439,6 +506,39 @@ main {
     stroke: var(--color1);
 }
 
+.modal-fav {
+    position: absolute;
+    top: 10rem;
+    width: 22rem;
+    background-color: var(--color1);
+    border-radius: 3em;
+    z-index: 4;
+    margin: auto;
+    box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2),
+        -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent,
+        0 0 5px 0px rgba(255, 255, 255, 0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+
+    transition: transform 0.3s ease-in-out;
+    pointer-events: none;
+    transform: scaleX(0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.modal-fav p {
+    text-align: center;
+    width: 70%;
+}
+
+.modal-visible {
+    pointer-events: auto;
+    transform: scaleX(1);
+}
+
 #favorites-button {
     width: 3rem;
     fill: var(--red);
@@ -476,6 +576,10 @@ main {
     overflow-y: auto;
 }
 
+.visible {
+    transform: translateX(0rem);
+}
+
 .pokemon-favorito {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.5);
@@ -485,9 +589,20 @@ main {
     flex-direction: column;
     gap: 2rem;
     cursor: pointer;
+    position: relative;
 }
 
-.pokemon-favorito * {
+.pokemon-favorito .pokemon-name {
+    font-weight: bold;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-style: oblique;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.pokemon-favorito .pokemon-name,
+.pokemon-favorito .type-icons,
+.pokemon-favorito img {
     pointer-events: none;
 }
 
@@ -495,8 +610,41 @@ main {
     height: 5rem;
 }
 
-.visible {
-    transform: translateX(0rem);
+.close-fav,
+.cancel {
+    width: 0.4rem;
+    height: 1.7rem;
+    background-color: #000;
+    border-radius: 1rem;
+    position: absolute;
+    right: 1.3rem;
+    top: 0.7rem;
+    transform: rotate(45deg);
+    transition: all 0.2s ease-in-out;
+}
+
+.close-fav::before,
+.cancel::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    border-radius: 1rem;
+    position: absolute;
+    transform: rotate(-90deg);
+    transition: all 0.2s ease-in-out;
+}
+
+.close-fav:hover,
+.close-fav:hover::before,
+.cancel:hover,
+.cancel:hover::before {
+    background-color: var(--red);
+}
+
+.cancel {
+    right: 2rem;
+    cursor: pointer;
 }
 
 #back-card {
@@ -677,6 +825,11 @@ footer a:hover {
     .visible {
         transform: translateX(0rem);
     }
+
+    .modal-fav {
+        width: 30rem;
+    }
+
     #logo {
         width: 3.2rem;
     }
