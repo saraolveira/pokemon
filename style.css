@@ -100,7 +100,7 @@ h1 {
     background-color: #ffffff;
     border-radius: 3rem;
     padding: 0.5rem 1.5rem;
-    box-shadow: 0px 4px 8px(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px (0, 0, 0, 0.1);
 }
 
 #search-container img {
@@ -484,6 +484,11 @@ main {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    cursor: pointer;
+}
+
+.pokemon-favorito * {
+    pointer-events: none;
 }
 
 .pokemon-favorito img {
@@ -624,7 +629,7 @@ footer.modo-oscuro {
     color: white;
 }
 
-#cazadores.modo-oscuro{
+#cazadores.modo-oscuro {
     color: #ffad33;
 }
 
@@ -664,8 +669,6 @@ footer a:hover {
         grid-template-columns: repeat(3, 1fr);
     }
 
-<<<<<<< HEAD
-=======
     .favorite-pokemons {
         width: 30rem;
         transform: translateX(30rem);
@@ -674,9 +677,7 @@ footer a:hover {
     .visible {
         transform: translateX(0rem);
     }
->>>>>>> 6b5a917496cb222c83c693c0c29f024f0e0cf61b
 }
-
 /* Large devices (laptops/desktops, 992px and up) */
 @media (min-width: 992px) {
     #pokemons {

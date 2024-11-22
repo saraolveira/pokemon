@@ -6,16 +6,10 @@ let back = false
 const sugerenciasPokemons = document.querySelector("#pokemons")
 const noMatches = document.querySelector("#no-matches")
 const pokemonCard = document.querySelector("#card")
-const favoriteSection = document.querySelector(".favorite-pokemons")
-const favoriteButton = document.querySelector("#favorites-button")
 
+let pokemons = null
 let singlePokemon = null
 let pokemonMatches = null
-let favoritePokemons = []
-if (localStorage.getItem("favoritePokemons")) {
-    favoritePokemons = JSON.parse(localStorage.getItem("favoritePokemons"))
-    console.log(favoritePokemons[0].types[0].type.name)
-}
 
 const typeIcons = {
     bug: {
@@ -147,8 +141,6 @@ const searchPokemons = async () => {
     const data = await getPokemons(
         "https://pokeapi.co/api/v2/pokemon?limit=1126"
     )
-
-    let pokemons = null
 
     if (data) {
         pokemons = data.results
@@ -461,6 +453,13 @@ const pokemonError = () => {
 }
 
 // Favoritos
+const favoriteSection = document.querySelector(".favorite-pokemons")
+const favoriteButton = document.querySelector("#favorites-button")
+
+let favoritePokemons = []
+if (localStorage.getItem("favoritePokemons")) {
+    favoritePokemons = JSON.parse(localStorage.getItem("favoritePokemons"))
+}
 
 const catchPokemon = (pokemon) => {
     favoritePokemons.push(pokemon)
@@ -507,6 +506,21 @@ const showFavorites = () => {
         favoriteSection.classList.toggle("visible")
     })
 }
+
+favoriteSection.addEventListener("click", (event) => {
+    if (event.target.classList[0] === "pokemon-favorito") {
+        search.value = event.target.firstChild.textContent
+        searchValue = search.value.toLowerCase()
+        singlePokemon = pokemons.filter(
+            (pokemon) => pokemon.name.replaceAll("-", " ") === searchValue
+        )
+
+        showPokemon()
+        favoriteSection.classList.remove("visible")
+    }
+})
+
+// Llamadas funciones
 
 searchPokemons()
 showFavorites()
@@ -590,6 +604,7 @@ document.querySelector("#modonoche .boton").addEventListener("click", () => {
     document.querySelector("footer").classList.toggle("modo-oscuro")
     document.querySelector(".frik").classList.toggle("modo-oscuro")
     document.querySelector("#cazadores").classList.toggle("modo-oscuro")
+
     const Imagendelboton = document.getElementById("sol")
     if (Imagendelboton.src.includes("sol.png")) {
         Imagendelboton.src = "./img/luna.png"
