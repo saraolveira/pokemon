@@ -472,7 +472,9 @@ const catchPokemon = (pokemon) => {
                 typeIcons[favType].bg
             });"><p class="pokemon-name">${pokemon.name}</p>
             <img src="${pokemon.sprites.other.dream_world.front_default}" />
-                <div class="type-icons">
+                <div class="type-icons" style="fill:${
+                    typeIcons[favType].color1
+                }">
         ${pokemon.types
             .map((type) => typeIcons[type.type.name].icon)
             .join("")}</div>
