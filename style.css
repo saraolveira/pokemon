@@ -99,6 +99,7 @@ h1 {
     background-color: #ffffff;
     border-radius: 3rem;
     padding: 0.5rem 1.5rem;
+    box-shadow: 0px 4px 8px(0, 0, 0, 0.1);
 }
 
 #search-container img {
@@ -119,8 +120,8 @@ h1 {
 }
 
 #search:hover {
-    border-color: #ff6347;
-    box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
+    border-color: #ffad33;
+    box-shadow: 0 0 10px rgba(255, 173, 51, 0.5);
 }
 
 #search-container input::placeholder {
@@ -582,8 +583,13 @@ main.modo-oscuro {
 footer {
     width: 100%;
     text-align: center;
-    background-color: white;
-    color: #000;
+}
+
+footer h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 #logo {
@@ -596,10 +602,25 @@ footer p {
     padding: 1rem;
 }
 
+footer a {
+    color: #ffad33;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
 footer.modo-oscuro {
     padding: 1rem;
     background-color: #494949;
     color: white;
+}
+
+#cazadores.modo-oscuro{
+    color: #ffad33;
+}
+
+footer a:hover {
+    color: #f02b2b;
+    text-decoration: underline;
 }
 
 .modo-oscuro a {
@@ -628,6 +649,7 @@ footer.modo-oscuro {
     #pokemons {
         grid-template-columns: repeat(3, 1fr);
     }
+
 }
 
 /* Large devices (laptops/desktops, 992px and up) */

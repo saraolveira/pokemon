@@ -491,6 +491,7 @@ document.querySelector("#modonoche .boton").addEventListener("click", () => {
     document.getElementById("card").classList.toggle("modo-oscuro")
     document.querySelector("footer").classList.toggle("modo-oscuro")
     document.querySelector(".frik").classList.toggle("modo-oscuro")
+    document.querySelector("#cazadores").classList.toggle("modo-oscuro")
     const Imagendelboton = document.getElementById("sol")
     if (Imagendelboton.src.includes("sol.png")) {
         Imagendelboton.src = "./img/luna.png"
