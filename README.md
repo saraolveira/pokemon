@@ -1,45 +1,13 @@
 # Visualizador de Pokemons
 
-Proyecto del Grupo B para el bootcamp de Hack A Boss
+Proyecto del Grupo B para el bootcamp de Hack A Boss, disponible en [https://saraolveira.github.io/pokemon/](https://saraolveira.github.io/pokemon/)
 
-## Lista de tareas
+## Búsqueda de Pokemons
+La funcionalidad principal de la aplicación es la de búsqueda de Pokemons y visualización de sus stats principales. 
 
-### HTML
+Para buscar un Pokemon se debe introducir el nombre en la barra de búsqueda disponible en la cabecera de la página. Empezarán a aparecer los Pokemons que coincidan y desde ahí se podrá hacer click en cada uno de los Pokemons para visualizar la carta con sus datos. Si el nombre escrito en la barra de búsqueda coincide exactamente con el de un Pokemon se mostrará directamente su carta.
 
--   [x] Layout general de la página
--   [x] Layout de la página cuando se está buscando un Pokemon y hay varias coincidencias
--   [x] Layout de la página cuando se está buscando un Pokemon y coincide exacto con un Pokemon
--   [x] Layout de la página cuando no hay coincidencias
+## Pokemons capturados
+La aplicación también tiene un apartado para que el usuario pueda guardar sus Pokemons favoritos. En la carta de cada Pokemon hay un icono de estrella, el usuario deberá hacer click en ella y luego hacer click en la Pokeball que aparece para capturar al Pokemon.
 
-### CSS
-
--   [x] Diseño general de la página
-    -   [x] Colores
-    -   [x] Tipografía
-    -   [x] Márgenes y padding
-    -   [ ] Fondo/imagenes decorativas
--   [ ] Diseño y layout de los resultados de varios pokemons
--   [x] Diseño y layout de la carta de un pokemon cuando hay match
--   [x] Diseño y layout cuando no hay coincidencias
--   [ ] EXTRA. Animaciones y cosas guays, cuando los requisitos estén listos
-
-### JavaScript
-
--   [x] Función fetch inicial y reusable
--   [x] Obtener la info de todos los pokemons
--   [x] Obtener cuando hay match de varios pokemons
--   [x] Obtener cuando hay match de un solo pokemon
--   [x] Mostrar los pokemons que empiezan a coincidir con la busqueda
--   [x] Mostrar la carta de un pokemon cuando es coincidencia exacta
-    -   [x] Llamada a fetch con la url api del pokemon
-    -   [x] Mostrar la info del pokemon
--   [x] Mostrar mensaje cuando no hay matches
--   [x] EXTRA. Click en pokemon (cuando hay coincidencias) para mostrar su carta
-
-### EXTRAS
-
--   [ ] Guardar Pokemons en favs (localStorage), modal para confirmar
--   [ ] Mostrar pokemons en intro
--   [ ] Buscar pokemons por número
--   [ ] Actualizar modo noche Solrock y Lunatone
--   [ ] Posibilidad de añadir movimientos/habilidades
+Todos los Pokemons capturados se pueden ver en la sección, y desde ahí ir a sus respectivas cartas o eliminarlos de favoritos.

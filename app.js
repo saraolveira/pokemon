@@ -21,7 +21,7 @@ const pokemonStyles = {
     dark: {
         icon: `<svg viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M229.379 452.85C239.106 454.339 249.068 455.111 259.212 455.111C367.214 455.111 454.767 367.558 454.767 259.556C454.767 151.553 367.214 64 259.212 64C251.966 64 244.811 64.3941 237.77 65.1621C291.345 105.751 326.767 176.062 326.767 256C326.767 340.04 287.616 413.44 229.379 452.85ZM255.656 512C397.041 512 511.656 397.385 511.656 256C511.656 114.615 397.041 0 255.656 0C114.271 0 -0.34375 114.615 -0.34375 256C-0.34375 397.385 114.271 512 255.656 512Z" /></svg>`,
         bg: "darkness_modern.png",
-        color1: "#090a04;",
+        color1: "#fff;",
         color2: "#375754;",
     },
     dragon: {
@@ -343,7 +343,7 @@ const showPokemon = async () => {
                 "--card-bg",
                 "url(./img/texturas/darkness_modern.png)"
             )
-            document.documentElement.style.setProperty("--color1", "#090a04")
+            document.documentElement.style.setProperty("--color1", "#fff")
             document.documentElement.style.setProperty("--color2", "#375754")
             pokemonCard.style.color = "#fff"
             break
@@ -446,15 +446,10 @@ const showPokemons = () => {
     sugerenciasPokemons.innerHTML = pokemonsHTML
 }
 
-/* // Para mostrar los pokemon al salir las sugerencias
-
-const showPokemons = async () => {
-    // Visibilidad de los contenedores
-    sugerenciasPokemons.style.display = "grid";
-    pokemonCard.style.display = "none";
-    noMatches.style.display = "none";
-
-    // Mostrar los pokemons en el HTML
+// Para mostrar los pokemon al salir las sugerencias al dar enter.
+search.addEventListener('keypress', async (event) => {
+    if (event.key === 'Enter') {
+            // Mostrar los pokemons en el HTML
     const pokemonsHTML = await Promise.all(
         pokemonMatches.map(async (pokemon) => {
             const pokemonData = await getPokemons(pokemon.url);
@@ -462,18 +457,20 @@ const showPokemons = async () => {
             const type = pokemonData.types.map((t) => t.type.name).join(", ");
 
             return `
-                <li class="pokemon-name poke-match">
+                <li class="pokemon-name pokemon-favorito pokemon-enter">
                     <img src="${frontIMG}" alt="${pokemon.name}" class="pokemon-icon"/>
                     <div>
-                        <p>${pokemon.name.replaceAll("-", " ")}</p>
-                        <p class="pokemon-type">${type}</p>
+                        <p class="pokemon-name">${pokemon.name.replaceAll("-", " ")}</p>
+                        <p class="">${type}</p>
                     </div>
                 </li>`;
         })
     );
 
     sugerenciasPokemons.innerHTML = pokemonsHTML.join("");
-}; */
+    }
+})
+
 
 const noPokemons = () => {
     sugerenciasPokemons.style.display = "none"
@@ -706,16 +703,19 @@ pokemonCard.addEventListener("click", () => {
     back = true
 })
 
-// EventListener para los clicks en las sugerencias
+// EventListener para los clicks en las sugerencias al dar enter
 sugerenciasPokemons.addEventListener("click", (event) => {
-    if (event.target.tagName === "LI") {
-        search.value = event.target.textContent
-        searchValue = search.value.toLowerCase() // Actualizar searchValue
-        singlePokemon = pokemonMatches.filter(
-            (pokemon) => pokemon.name.replaceAll("-", " ") === searchValue
-        )
-        showPokemon()
+    let target = event.target;
+    // Asegurarse de que target sea el elemento <li>
+    if (target.tagName !== 'LI') {
+        target = target.closest('li');
     }
+    search.value = target.querySelector('p').textContent.trim() // Obtener texto del primer <p> dentro del <li>
+    searchValue = search.value.toLowerCase()
+    singlePokemon = pokemonMatches.filter(
+        (pokemon) => pokemon.name.replaceAll("-", " ") === searchValue
+    )
+    showPokemon()
 })
 
 // Evento para funcionamiento del modo oscuro
@@ -746,3 +746,4 @@ document.querySelector("#modonoche .boton").addEventListener("dblclick", () => {
     document.getElementById("audio-susto").play()
     // document.querySelector("body.susto").classList.toggle("susto")
 })
+
