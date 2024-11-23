@@ -446,6 +446,35 @@ const showPokemons = () => {
     sugerenciasPokemons.innerHTML = pokemonsHTML
 }
 
+/* // Para mostrar los pokemon al salir las sugerencias
+
+const showPokemons = async () => {
+    // Visibilidad de los contenedores
+    sugerenciasPokemons.style.display = "grid";
+    pokemonCard.style.display = "none";
+    noMatches.style.display = "none";
+
+    // Mostrar los pokemons en el HTML
+    const pokemonsHTML = await Promise.all(
+        pokemonMatches.map(async (pokemon) => {
+            const pokemonData = await getPokemons(pokemon.url);
+            const frontIMG = pokemonData.sprites.other.dream_world.front_default || pokemonData.sprites.front_default;
+            const type = pokemonData.types.map((t) => t.type.name).join(", ");
+
+            return `
+                <li class="pokemon-name poke-match">
+                    <img src="${frontIMG}" alt="${pokemon.name}" class="pokemon-icon"/>
+                    <div>
+                        <p>${pokemon.name.replaceAll("-", " ")}</p>
+                        <p class="pokemon-type">${type}</p>
+                    </div>
+                </li>`;
+        })
+    );
+
+    sugerenciasPokemons.innerHTML = pokemonsHTML.join("");
+}; */
+
 const noPokemons = () => {
     sugerenciasPokemons.style.display = "none"
     pokemonCard.style.display = "none"
