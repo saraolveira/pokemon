@@ -8,41 +8,6 @@
     --y: 0px;
     --color1: #bebab4;
     --color2: #e0e3e6;
-    /* 
-
-    --bug1: #d2d455;
-    --bug2: #f7f99e;
-    --darkness1: #090a04;
-    --darkness2: #375754;
-    --dragon1: #514330;
-    --dragon2: #70914f;
-    --lightning1: #f2dd4a;
-    --lightning2: #f4f5cf;
-    --fairy1: #ff1470;
-    --fairy2: #ffdedc;
-    --fighting1: #e6700c;
-    --fighting2: #f9ca8e;
-    --fire1: #ed4230;
-    --fire2: #f6af74;
-    --flying1: #90a4a8;
-    --flying2: #e1e3e4;
-    --ghost1: #503a6f;
-    --ghost2: #e7e3ed;
-    --grass1: #93cd3b;
-    --grass2: #ecffad;
-    --ground1: #75550c;
-    --ground2: #f5db78;
-    --poison1: #557866;
-    --poison2: #d4efcf;
-    --psychic1: #ab62ae;
-    --psychic2: #eed6f1;
-    --rock1: #b2c29c;
-    --rock2: #e6f7d1;
-    --metal1: #2f3125;
-    --metal2: #f1f0ed;
-    --water1: #298fe5;
-    --water2: #cfecfd;
-     */
 }
 
 * {
@@ -422,6 +387,7 @@ main {
     position: absolute;
     bottom: -1.5rem;
     right: -1.5rem;
+    max-height: 100%;
 }
 
 .pokemon-column {

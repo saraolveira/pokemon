@@ -11,7 +11,7 @@ let pokemons = null
 let singlePokemon = null
 let pokemonMatches = null
 
-const typeIcons = {
+const pokemonStyles = {
     bug: {
         icon: `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m342.198.501279c.373-.5317158 1.105-.660937 1.637-.288625l36.354 25.455546c.532.3723.661 1.1051.289 1.6368l-50.599 72.2623c24.599 7.8587 41.358 16.3357 41.358 16.3357s-40.964 70.462-110.443 70.462-118.85-65.672-118.85-65.672 17.506-11.172 43.456-20.7539l-55.5-66.1415c-.417-.4973-.352-1.2386.145-1.6558l33.997-28.52715c.498-.41723 1.239-.35238 1.656.14487l70.272 83.74688c6.017-.6806 12.147-1.061 18.333-1.061 8.891 0 17.771.6759 26.44 1.8229zm13.746 189.200721c18.541-13.242 46.597-47.804 46.597-47.804s71.664 56.79 71.664 177.206c0 120.415-123.896 192.888-123.896 192.888s-59.195-59.781-73.727-135.562c-14.531-75.781 21.496-159.927 21.496-159.927s39.324-13.559 57.866-26.801zm-199.683 0c-18.541-13.242-46.597-47.804-46.597-47.804s-71.664 56.79-71.664 177.206c0 120.415 123.896 192.888 123.896 192.888s59.195-59.781 73.727-135.562c14.531-75.781-21.496-159.927-21.496-159.927s-39.324-13.559-57.866-26.801z" /></svg>`,
         bg: "bug.png",
@@ -180,21 +180,30 @@ const showPokemon = async () => {
     noMatches.style.display = "none"
 
     let frontIMG = null
+    let backIMG = null
 
     // Mostrar información del pokemon en el HTML
     if (pokemonData.sprites.other.dream_world.front_default) {
         frontIMG = pokemonData.sprites.other.dream_world.front_default
-    } else {
+    } else if (pokemonData.sprites.front_default) {
         frontIMG = pokemonData.sprites.front_default
+    } else {
+        frontIMG = "./img/missing.png"
+    }
+
+    if (pokemonData.sprites.back_default) {
+        backIMG = pokemonData.sprites.back_default
+    } else {
+        backIMG = "./img/missing.png"
     }
 
     iconSearch.src = frontIMG
     pokemonCard.innerHTML = `
     <div class="pokemon-superior">
-        <h2 class="pokemon-name">${pokemonData.name}</h2>
+        <h2 class="pokemon-name">${pokemonData.name.replaceAll("-", " ")}</h2>
         <div class="type-icons fill-type">
             ${pokemonData.types
-                .map((type) => typeIcons[type.type.name].icon)
+                .map((type) => pokemonStyles[type.type.name].icon)
                 .join("")}
 
          
@@ -213,7 +222,7 @@ const showPokemon = async () => {
             <img src="${frontIMG}" alt="${
         pokemonData.name
     }" class="imagen-frontal"/>
-            <img src="${pokemonData.sprites.back_default}" alt="${
+            <img src="${backIMG}" alt="${
         pokemonData.name
     } " class="imagen-trasera" />
     </div>
@@ -246,7 +255,7 @@ const showPokemon = async () => {
                .map(
                    (type) =>
                        `<div class="pokemon-type">${
-                           typeIcons[type.type.name].icon
+                           pokemonStyles[type.type.name].icon
                        }<p>${type.type.name}</p></div>`
                )
                .join("")}
@@ -465,14 +474,20 @@ if (localStorage.getItem("favoritePokemons")) {
 
 const catchPokemon = (pokemon) => {
     favoriteModal.classList.add("modal-visible")
-    favoriteModal.innerHTML = `<p>¡Rápido! Usa la pokeball para capturar a <span class="pokemon-name">${pokemon.name}</span></p><div class="poke-fav"></div><div class="cancel"></div>`
+    favoriteModal.innerHTML = `<p>¡Rápido! Usa la pokeball para capturar a <span class="pokemon-name">${pokemon.name.replaceAll(
+        "-",
+        " "
+    )}</span></p><div class="poke-fav"></div><div class="cancel"></div>`
     const pokeFav = document.querySelector(".poke-fav")
     const cancel = document.querySelector(".cancel")
     pokeFav.addEventListener("click", () => {
         pokeFav.style.animation = "shake 1.5s 2 ease-in-out"
         pokeFav.classList.add("animate")
         setTimeout(() => {
-            favoriteModal.innerHTML = `<p>¡Enhorabuena! Has capturado a <span class="pokemon-name">${pokemon.name}</span></p>`
+            favoriteModal.innerHTML = `<p>¡Enhorabuena! Has capturado a <span class="pokemon-name">${pokemon.name.replaceAll(
+                "-",
+                " "
+            )}</span></p>`
 
             favoritePokemons.push(pokemon)
             localStorage.setItem(
@@ -481,18 +496,29 @@ const catchPokemon = (pokemon) => {
             )
             favoriteSection.innerHTML = `${favoritePokemons
                 .map((pokemon) => {
+                    let frontIMG = null
+
+                    if (pokemon.sprites.other.dream_world.front_default) {
+                        frontIMG =
+                            pokemon.sprites.other.dream_world.front_default
+                    } else if (pokemon.sprites.front_default) {
+                        frontIMG = pokemon.sprites.front_default
+                    } else {
+                        frontIMG = "./img/missing.png"
+                    }
                     let favType = pokemon.types[0].type.name
                     return `<div class="pokemon-favorito" style="background-image: url(./img/texturas/${
-                        typeIcons[favType].bg
-                    });"><p class="pokemon-name">${pokemon.name}</p>
-                    <img src="${
-                        pokemon.sprites.other.dream_world.front_default
-                    }" />
+                        pokemonStyles[favType].bg
+                    });"><p class="pokemon-name">${pokemon.name.replaceAll(
+                        "-",
+                        " "
+                    )}</p>
+                    <img src="${frontIMG}" />
                         <div class="type-icons" style="fill:${
-                            typeIcons[favType].color1
+                            pokemonStyles[favType].color1
                         }">
                 ${pokemon.types
-                    .map((type) => typeIcons[type.type.name].icon)
+                    .map((type) => pokemonStyles[type.type.name].icon)
                     .join("")}</div>
                     <div class="close-fav"></div>
                     </div>`
@@ -514,16 +540,29 @@ const showFavorites = () => {
     if (favoritePokemons.length > 0) {
         favoriteSection.innerHTML = `${favoritePokemons
             .map((pokemon) => {
+                let frontIMG = null
+
+                if (pokemon.sprites.other.dream_world.front_default) {
+                    frontIMG = pokemon.sprites.other.dream_world.front_default
+                } else if (pokemon.sprites.front_default) {
+                    frontIMG = pokemon.sprites.front_default
+                } else {
+                    frontIMG = "./img/missing.png"
+                }
+
                 let favType = pokemon.types[0].type.name
                 return `<div class="pokemon-favorito" style="background-image: url(./img/texturas/${
-                    typeIcons[favType].bg
-                });"><p class="pokemon-name">${pokemon.name}</p>
-                <img src="${pokemon.sprites.other.dream_world.front_default}" />
+                    pokemonStyles[favType].bg
+                });"><p class="pokemon-name">${pokemon.name.replaceAll(
+                    "-",
+                    " "
+                )}</p>
+                <img src="${frontIMG}" />
                     <div class="type-icons" style="fill:${
-                        typeIcons[favType].color1
+                        pokemonStyles[favType].color1
                     }">
             ${pokemon.types
-                .map((type) => typeIcons[type.type.name].icon)
+                .map((type) => pokemonStyles[type.type.name].icon)
                 .join("")}</div>
                 <div class="close-fav"></div>
                 </div>`
@@ -564,14 +603,14 @@ favoriteSection.addEventListener("click", (event) => {
             .map((pokemon) => {
                 let favType = pokemon.types[0].type.name
                 return `<div class="pokemon-favorito" style="background-image: url(./img/texturas/${
-                    typeIcons[favType].bg
+                    pokemonStyles[favType].bg
                 });"><p class="pokemon-name">${pokemon.name}</p>
                 <img src="${pokemon.sprites.other.dream_world.front_default}" />
                     <div class="type-icons" style="fill:${
-                        typeIcons[favType].color1
+                        pokemonStyles[favType].color1
                     }">
             ${pokemon.types
-                .map((type) => typeIcons[type.type.name].icon)
+                .map((type) => pokemonStyles[type.type.name].icon)
                 .join("")}</div>
                 <div class="close-fav"></div>
                 </div>`
@@ -629,7 +668,7 @@ pokemonCard.addEventListener("mouseleave", () => {
 pokemonCard.addEventListener("click", () => {
     pokemonCard.innerHTML = `
     <div id="back-card">
-    <img src="./img/logo/pokelogo.png" class="card-text"/>
+    <img src="./img/pokelogo.png" class="card-text"/>
     <img src="./img/pokeball.png" class="card-pokeball"/></div>`
 
     if (back) {
