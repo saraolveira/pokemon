@@ -583,9 +583,10 @@ main {
     text-align: center;
 }
 
-.pokemon-enter img{
+.pokemon-enter img {
     height: auto;
     width: 5rem;
+    max-height: 5rem;
 }
 
 .close-fav,
@@ -778,8 +779,8 @@ footer a:hover {
     cursor: pointer;
 }
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 600px) {
-}
+/* @media (min-width: 600px) {
+} */
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media (min-width: 768px) {
